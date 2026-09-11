@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="verde_500">#FF2E7D32</color>
+    <color name="verde_700">#FF1B5E20</color>
+    <color name="verde_200">#FFA5D6A7</color>
+    <color name="laranja_500">#FFEF6C00</color>
+    <color name="branco">#FFFFFFFF</color>
+    <color name="preto">#FF000000</color>
+    <color name="cinza_texto">#FF424242</color>
+</resources>

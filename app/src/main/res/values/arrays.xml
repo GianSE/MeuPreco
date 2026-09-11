@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categorias">
+        <item>Selecione uma categoria</item>
+        <item>Alimentos</item>
+        <item>Bebidas</item>
+        <item>Carnes e frios</item>
+        <item>Hortifrúti</item>
+        <item>Higiene pessoal</item>
+        <item>Limpeza</item>
+        <item>Padaria</item>
+        <item>Pet</item>
+        <item>Outros</item>
+    </string-array>
+</resources>

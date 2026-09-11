@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        Tema claro fixo: o formulario usa textos em verde escuro, que ficariam
+        ilegiveis caso o sistema aplicasse o modo escuro sobre a tela.
+    -->
+    <style name="Theme.MeuPreco" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/verde_500</item>
+        <item name="colorPrimaryVariant">@color/verde_700</item>
+        <item name="colorOnPrimary">@color/branco</item>
+        <item name="colorSecondary">@color/laranja_500</item>
+        <item name="colorSecondaryVariant">@color/laranja_500</item>
+        <item name="colorOnSecondary">@color/branco</item>
+
+        <!-- Impede que o Android 10+ escureca a tela automaticamente. -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+
+</resources>

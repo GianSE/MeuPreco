@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meu Preço</string>
+    <string name="titulo_activity_cadastro">Meu Preço - Novo Registro</string>
+
+    <string name="cabecalho">Registro de Preço de Produto</string>
+    <string name="subtitulo">Anote quanto você pagou e onde comprou.</string>
+
+    <string name="label_produto">Nome do produto:</string>
+    <string name="hint_produto">Ex.: Arroz branco tipo 1 - 5 kg</string>
+
+    <string name="label_marca">Marca:</string>
+    <string name="hint_marca">Ex.: Tio João</string>
+
+    <string name="label_mercado">Mercado:</string>
+    <string name="hint_mercado">Ex.: Supermercado Central</string>
+
+    <string name="label_preco">Preço pago (R$):</string>
+    <string name="hint_preco">Ex.: 24,90</string>
+
+    <string name="label_quantidade">Quantidade comprada:</string>
+    <string name="hint_quantidade">Ex.: 2</string>
+
+    <string name="label_categoria">Categoria do produto:</string>
+
+    <string name="label_unidade">Unidade de medida:</string>
+    <string name="rb_unidade">Unidade</string>
+    <string name="rb_quilo">Quilo (kg)</string>
+    <string name="rb_litro">Litro (L)</string>
+
+    <string name="label_pagamento">Forma de pagamento:</string>
+    <string name="rb_dinheiro">Dinheiro</string>
+    <string name="rb_cartao">Cartão</string>
+    <string name="rb_pix">Pix</string>
+
+    <string name="label_opcoes">Opções adicionais:</string>
+    <string name="cb_promocao">Preço promocional</string>
+    <string name="cb_favorito">Mercado favorito</string>
+    <string name="cb_lembrete">Avisar quando o preço baixar</string>
+
+    <string name="label_observacoes">Observações:</string>
+    <string name="hint_observacoes">Ex.: promoção válida até domingo</string>
+
+    <string name="bt_salvar">Salvar</string>
+    <string name="bt_limpar">Limpar</string>
+
+    <string name="erro_produto">Informe o nome do produto!</string>
+    <string name="erro_marca">Informe a marca do produto!</string>
+    <string name="erro_mercado">Informe o nome do mercado!</string>
+    <string name="erro_preco">Informe o preço pago!</string>
+    <string name="erro_preco_invalido">Preço inválido! Use apenas números.</string>
+    <string name="erro_quantidade">Informe a quantidade comprada!</string>
+    <string name="erro_quantidade_invalida">Quantidade inválida! Use apenas números.</string>
+    <string name="erro_observacoes">Informe alguma observação sobre a compra!</string>
+    <string name="erro_categoria">Selecione a categoria do produto!</string>
+    <string name="erro_unidade">Selecione a unidade de medida!</string>
+    <string name="erro_pagamento">Selecione a forma de pagamento!</string>
+
+    <string name="msg_limpo">Formulário limpo!</string>
+    <string name="campo_obrigatorio">Campo obrigatório</string>
+    <string name="nenhuma_opcao">Nenhuma</string>
+</resources>
