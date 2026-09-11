@@ -22,13 +22,19 @@
             </intent-filter>
         </activity>
 
-        <!-- Activity da Entrega 1 (formulário): permanece no projeto, mas não é
-             mais a inicial e não é acessada pelo usuário. -->
+        <!-- Activity de Cadastro (formulário da Entrega 1). Aberta pela lista
+             através do botão "Adicionar", esperando um resultado. -->
         <activity
             android:name=".CadastroPrecoActivity"
             android:exported="false"
             android:label="@string/titulo_activity_cadastro"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Activity de Autoria (Entrega 3). Aberta pela lista pelo botão "Sobre". -->
+        <activity
+            android:name=".AutoriaActivity"
+            android:exported="false"
+            android:label="@string/titulo_autoria" />
     </application>
 
 </manifest>

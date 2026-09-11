@@ -1,53 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Tela principal (Launcher) da Entrega 2.
-    A raiz e um LinearLayout vertical: faixa verde no topo e, abaixo, a
-    ListView ocupando todo o restante da tela.
+    Tela principal (Launcher) - Entrega 3.
+    Barra do Aplicativo (Toolbar) no topo; abaixo os botões Adicionar/Sobre;
+    e a ListView (com empty view) ocupando o restante da tela.
+    A lista agora e preenchida pelos cadastros feitos na tela de Cadastro.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- ===================== Faixa verde (barra de titulo) ===================== -->
-    <LinearLayout
-        android:id="@+id/barraTopo"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/verde_500"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp">
+        android:minHeight="?attr/actionBarSize"
+        app:subtitleTextColor="@color/verde_200"
+        app:titleTextColor="@color/branco" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/titulo_lista"
-            android:textColor="@color/branco"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+    <!-- ===================== Botões Adicionar / Sobre ===================== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
 
-        <TextView
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/botaoAdicionar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="@string/subtitulo_lista"
-            android:textColor="@color/verde_200"
-            android:textSize="13sp" />
+            android:layout_weight="1"
+            android:text="@string/bt_adicionar" />
+
+        <Button
+            android:id="@+id/botaoSobre"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:text="@string/bt_sobre" />
     </LinearLayout>
 
-    <!-- ===================== Lista de produtos ===================== -->
-    <ListView
-        android:id="@+id/listaProdutos"
+    <!-- ===================== Lista (com empty view) ===================== -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        android:divider="@color/cinza_divisor"
-        android:dividerHeight="1dp"
-        android:paddingTop="4dp" />
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/listaProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:divider="@color/cinza_divisor"
+            android:dividerHeight="1dp"
+            android:paddingTop="4dp" />
+
+        <TextView
+            android:id="@+id/textVazio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="32dp"
+            android:text="@string/lista_vazia"
+            android:textColor="@color/cinza_texto"
+            android:textSize="16sp" />
+    </FrameLayout>
 
 </LinearLayout>

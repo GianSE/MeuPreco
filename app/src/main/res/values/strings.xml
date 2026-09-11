@@ -64,4 +64,23 @@
     <string name="titulo_lista">Meu Preço</string>
     <string name="subtitulo_lista">Preços registrados nos mercados</string>
     <string name="item_clicado">Selecionado: %1$s (%2$s) — R$ %3$s</string>
+
+    <!-- Entrega 3 - listagem, cadastro e autoria -->
+    <string name="bt_adicionar">Adicionar</string>
+    <string name="bt_sobre">Sobre</string>
+    <string name="lista_vazia">Nenhum preço cadastrado ainda.\nToque em ADICIONAR para cadastrar um produto.</string>
+    <string name="produto_adicionado">%1$s adicionado à lista!</string>
+    <string name="titulo_cadastro_bar">Novo registro</string>
+
+    <string name="titulo_autoria">Sobre o app</string>
+    <string name="autoria_descricao">O Meu Preço é um aplicativo para registro pessoal de preços de produtos em mercados. Ele permite cadastrar produtos com marca, mercado, categoria, unidade e preço, e listar os registros feitos.</string>
+    <string name="autoria_rotulo_aluno">Aluno</string>
+    <string name="autoria_aluno">Gian Pedro Rodrigues</string>
+    <string name="autoria_rotulo_curso">Curso</string>
+    <string name="autoria_curso">Engenharia da Computação</string>
+    <string name="autoria_rotulo_email">E-mail</string>
+    <string name="autoria_email">gian.2000@alunos.utfpr.edu.br</string>
+    <string name="autoria_utfpr_nome">Universidade Tecnológica Federal do Paraná</string>
+    <string name="autoria_disciplina">Disciplina: Programação para Dispositivos Móveis</string>
+    <string name="autoria_credito">Ícone do aplicativo por Freepik — Flaticon (flaticon.com)</string>
 </resources>

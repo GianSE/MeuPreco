@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Tela de Autoria do app (Entrega 3): Barra do Aplicativo (Toolbar) no topo e,
+    abaixo, um ScrollView com os dados do autor e da UTFPR.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/raiz"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verde_500"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/branco" />
+
+    <ScrollView
+        android:id="@+id/conteudoAutoria"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- ===================== Logo do app ===================== -->
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/app_name"
+                android:textColor="@color/verde_700"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/autoria_descricao"
+                android:textAlignment="center"
+                android:textColor="@color/cinza_texto"
+                android:textSize="15sp" />
+
+            <!-- ===================== Dados do aluno ===================== -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/cinza_divisor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/autoria_rotulo_aluno"
+                android:textColor="@color/verde_700"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/autoria_aluno"
+                android:textColor="@color/cinza_texto"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/autoria_rotulo_curso"
+                android:textColor="@color/verde_700"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/autoria_curso"
+                android:textColor="@color/cinza_texto"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/autoria_rotulo_email"
+                android:textColor="@color/verde_700"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:text="@string/autoria_email"
+                android:textColor="@color/cinza_texto"
+                android:textSize="16sp" />
+
+            <!-- ===================== UTFPR ===================== -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/cinza_divisor" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/autoria_utfpr_nome"
+                android:src="@drawable/logo_utfpr" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/autoria_utfpr_nome"
+                android:textAlignment="center"
+                android:textColor="@color/cinza_texto"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/autoria_disciplina"
+                android:textAlignment="center"
+                android:textColor="@color/cinza_texto"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/autoria_credito"
+                android:textAlignment="center"
+                android:textColor="@color/cinza_texto"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

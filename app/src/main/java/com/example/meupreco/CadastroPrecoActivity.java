@@ -1,5 +1,6 @@
 package com.example.meupreco;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,14 +14,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.Locale;
-
 /**
- * Meu Preço - Entrega 1.
+ * Meu Preço - Entrega 1 (atualizada na Entrega 3).
  *
  * Activity com o formulário de cadastro de um registro pessoal de preço
  * de um produto comprado em um mercado.
@@ -33,8 +33,16 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
     // Posição do item "Selecione uma categoria" dentro do Spinner.
     private static final int POSICAO_CATEGORIA_VAZIA = 0;
 
+    // Chaves usadas para devolver os dados do produto à tela de Listagem.
+    public static final String EXTRA_NOME = "extra_nome";
+    public static final String EXTRA_MARCA = "extra_marca";
+    public static final String EXTRA_MERCADO = "extra_mercado";
+    public static final String EXTRA_CATEGORIA = "extra_categoria";
+    public static final String EXTRA_UNIDADE = "extra_unidade";
+    public static final String EXTRA_PRECO = "extra_preco";
+
     private View raiz;
-    private View barraTopo;
+    private Toolbar toolbar;
     private ScrollView scrollFormulario;
 
     private EditText editProduto;
@@ -67,6 +75,14 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
         controlador.setAppearanceLightStatusBars(false);
 
         buscarComponentes();
+
+        // Exibe a Barra do Aplicativo com título e botão de voltar (cancelar).
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.titulo_cadastro_bar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         configurarSpinner();
         tratarBarrasDoSistema();
 
@@ -75,11 +91,21 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
     }
 
     /**
+     * A seta "voltar" da Barra do Aplicativo cancela o cadastro (volta sem
+     * adicionar nada à lista).
+     */
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+    /**
      * Liga os atributos da classe aos componentes declarados no arquivo de layout.
      */
     private void buscarComponentes() {
         raiz = findViewById(R.id.raiz);
-        barraTopo = findViewById(R.id.barraTopo);
+        toolbar = findViewById(R.id.toolbar);
         scrollFormulario = findViewById(R.id.scrollFormulario);
 
         editProduto = findViewById(R.id.editProduto);
@@ -124,8 +150,6 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
      * fique atrás da barra de navegação.
      */
     private void tratarBarrasDoSistema() {
-        final int paddingBase = Math.round(16 * getResources().getDisplayMetrics().density);
-
         ViewCompat.setOnApplyWindowInsetsListener(raiz, new androidx.core.view.OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat insets) {
@@ -133,10 +157,9 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
                         | WindowInsetsCompat.Type.displayCutout());
                 Insets teclado = insets.getInsets(WindowInsetsCompat.Type.ime());
 
-                // A faixa verde recebe o recuo do topo somado ao seu espaçamento
-                // padrão, e o fundo verde preenche atrás da barra de status.
-                barraTopo.setPadding(paddingBase + barras.left, paddingBase + barras.top,
-                        paddingBase + barras.right, paddingBase);
+                // A Barra do Aplicativo (Toolbar) recebe o recuo do topo, e o
+                // fundo verde preenche atrás da barra de status.
+                toolbar.setPadding(barras.left, barras.top, barras.right, 0);
 
                 // O formulário recebe os recuos das laterais e da parte de baixo.
                 scrollFormulario.setPadding(barras.left, 0, barras.right,
@@ -161,7 +184,8 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
 
     /**
      * Lê os valores digitados/selecionados, valida cada um deles e, quando o
-     * formulário está correto, exibe um resumo do registro em um Toast.
+     * formulário está correto, devolve os dados à tela de Listagem através de
+     * setResult(RESULT_OK) e encerra esta Activity.
      */
     private void salvar() {
         String produto = editProduto.getText().toString().trim();
@@ -224,24 +248,21 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
             return;
         }
         String unidade = lerRadioSelecionado(grupoUnidade);
-        String pagamento = lerRadioSelecionado(grupoPagamento);
+        // Os demais campos (pagamento, quantidade, opções, observações) são
+        // validados acima, mas não fazem parte da entidade Produto exibida na
+        // lista, por isso não são devolvidos.
 
-        // --- Leitura dos CheckBox ---
-        String opcoes = lerOpcoesMarcadas();
+        // --- Formulário válido: devolve os dados à tela de Listagem ---
+        Intent resultado = new Intent();
+        resultado.putExtra(EXTRA_NOME, produto);
+        resultado.putExtra(EXTRA_MARCA, marca);
+        resultado.putExtra(EXTRA_MERCADO, mercado);
+        resultado.putExtra(EXTRA_CATEGORIA, categoria);
+        resultado.putExtra(EXTRA_UNIDADE, unidade);
+        resultado.putExtra(EXTRA_PRECO, preco);
 
-        // --- Resumo mostrado no Toast (provisório, será uma listagem depois) ---
-        double total = preco * quantidade;
-        String resumo = produto + " (" + marca + ")"
-                + "\nCategoria: " + categoria
-                + "\nMercado: " + mercado
-                + "\nR$ " + formatarValor(preco) + " por " + unidade
-                + "\nQtde: " + formatarValor(quantidade)
-                + " | Total: R$ " + formatarValor(total)
-                + "\nPagamento: " + pagamento
-                + "\nOpções: " + opcoes
-                + "\nObs.: " + observacoes;
-
-        Toast.makeText(this, resumo, Toast.LENGTH_LONG).show();
+        setResult(RESULT_OK, resultado);
+        finish();
     }
 
     /**
@@ -257,44 +278,11 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
     }
 
     /**
-     * Formata um número com duas casas decimais e vírgula, no padrão brasileiro.
-     */
-    private String formatarValor(double valor) {
-        return String.format(Locale.forLanguageTag("pt-BR"), "%.2f", valor);
-    }
-
-    /**
      * Devolve o texto do RadioButton marcado dentro do RadioGroup informado.
      */
     private String lerRadioSelecionado(RadioGroup grupo) {
         RadioButton selecionado = findViewById(grupo.getCheckedRadioButtonId());
         return selecionado.getText().toString();
-    }
-
-    /**
-     * Monta um texto com as opções (CheckBox) que estão marcadas.
-     */
-    private String lerOpcoesMarcadas() {
-        StringBuilder texto = new StringBuilder();
-        if (checkPromocao.isChecked()) {
-            texto.append(checkPromocao.getText());
-        }
-        if (checkFavorito.isChecked()) {
-            if (texto.length() > 0) {
-                texto.append(", ");
-            }
-            texto.append(checkFavorito.getText());
-        }
-        if (checkLembrete.isChecked()) {
-            if (texto.length() > 0) {
-                texto.append(", ");
-            }
-            texto.append(checkLembrete.getText());
-        }
-        if (texto.length() == 0) {
-            texto.append(getString(R.string.nenhuma_opcao));
-        }
-        return texto.toString();
     }
 
     /**

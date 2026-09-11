@@ -1,11 +1,12 @@
-# Meu Preço — Entrega 1
+# Meu Preço — Entrega 3
 
 Aplicativo de **registro pessoal de preços de produtos em mercados**.
 
-Esta entrega contém a Activity `CadastroPrecoActivity`, com o formulário de
-cadastro de um registro de preço.
+O app abre na tela de **Listagem** (Launcher). A partir dela o usuário pode
+**Adicionar** um produto (abrindo o formulário de Cadastro e recebendo o
+resultado de volta) e ver detalhes de **Sobre** (tela de Autoria do app).
 
-Autor: **Gian Pedro Rodrigues**
+Autor: **Gian Pedro Rodrigues** — Engenharia da Computação — UTFPR
 
 ## Configuração do projeto
 
@@ -31,42 +32,52 @@ exigido (perfil Nexus 4).
 | Densidade | 450 dpi |
 | Tamanho da tela | ~6.7" (acima do mínimo de 4.7") |
 
-## Componentes usados no formulário
+## Telas (Activities)
 
-- **ScrollView** — raiz do layout, permite rolar o formulário em telas pequenas.
-- **TextView** — cabeçalho, subtítulo e o rótulo de cada campo.
-- **EditText** (6) — produto, marca, mercado, preço, quantidade e observações.
-- **Spinner** (1) — categoria do produto (`arrays.xml`).
-- **RadioGroup** (2) com **RadioButton** (6) — unidade de medida
-  (Unidade / Quilo / Litro) e forma de pagamento (Dinheiro / Cartão / Pix).
-- **CheckBox** (3) — preço promocional, mercado favorito e aviso de queda de preço.
-- **Button** (2) — "Salvar" e "Limpar".
+- **ListaPrecosActivity** (principal / Launcher) — exibe em uma `ListView` os
+  produtos cadastrados pelo usuário, usando o `ProdutoAdapter` customizado.
+  Possui os botões **Adicionar** (abre o Cadastro com `startActivityForResult`)
+  e **Sobre** (abre a Autoria com `startActivity`). Ao tocar em um item, um
+  Toast identifica o produto.
+- **CadastroPrecoActivity** (formulário) — ao clicar em **Salvar**, valida os
+  campos e devolve os dados à lista com `setResult(RESULT_OK)`; ao clicar em
+  **Limpar**, limpa o formulário.
+- **AutoriaActivity** — exibe os dados de autoria (aluno, curso, e-mail),
+  a descrição do app e o logo e nome da UTFPR.
 
-## Comportamento dos botões
+## Entidade e listagem
 
-**Salvar** — lê os valores dos EditText, do Spinner, dos CheckBox e dos
-RadioButton selecionados e valida cada um deles. Se algum EditText estiver
-vazio (ou com valor numérico inválido), se nenhuma categoria for escolhida no
-Spinner ou se algum RadioGroup estiver sem seleção, é exibido um Toast com a
-mensagem de erro, a tela rola até o campo com problema e o foco de edição volta
-para ele. Estando tudo válido, um Toast mostra o resumo do registro.
+- **`Produto`** — entidade do tema, com 6 atributos: nome, marca, mercado,
+  categoria, unidade e preço.
+- Os produtos são guardados em um **`ArrayList<Produto>`** ligado ao
+  `ProdutoAdapter`. A cada cadastro devolvido com `RESULT_OK`, o
+  `onActivityResult` cria um `Produto`, adiciona ao `ArrayList` e chama
+  `notifyDataSetChanged()` para redesenhar a `ListView`.
 
-> O Toast exibe no máximo duas linhas a partir do Android 12 (API 31), então
-> parte do resumo pode aparecer cortada. Nas próximas entregas ele será
-> substituído por uma tela de listagem.
+## Barra do Aplicativo (App Bar)
 
-**Limpar** — apaga o texto de todos os EditText, desmarca os RadioButton
-(`RadioGroup.clearCheck()`) e os CheckBox, volta o Spinner para o item inicial,
-devolve o foco ao primeiro campo e mostra um Toast confirmando a ação.
+Cada tela usa uma `androidx.appcompat.widget.Toolbar` definida como
+`setSupportActionBar(...)`, funcionando como a Barra do Aplicativo. O recuo do
+topo (barra de status / recorte da câmera) é aplicado à Toolbar via
+`WindowInsets`, posicionando a barra corretamente no modo borda a borda
+(edge-to-edge) obrigatório a partir do API 35.
 
-## Estrutura dos arquivos
+## Componentes do formulário de Cadastro
 
-```
-app/src/main/
-├── AndroidManifest.xml
-├── java/com/example/meupreco/CadastroPrecoActivity.java
-└── res/
-    ├── drawable/ic_launcher.xml
-    ├── layout/activity_cadastro_preco.xml
-    └── values/  (arrays, colors, strings, styles, themes)
-```
+- **ScrollView** — permite rolar o formulário em telas pequenas.
+- **EditText** (6), **Spinner** (1), **RadioGroup** (2) com **RadioButton** (6),
+  **CheckBox** (3) e **Button** (2 — "Salvar" e "Limpar").
+
+## Histórico das entregas
+
+- **Entrega 1** — formulário de cadastro (`CadastroPrecoActivity`).
+- **Entrega 2** — entidade `Produto`, `ArrayList`, `ListView` com
+  `ProdutoAdapter` customizado e clique com Toast.
+- **Entrega 3** — tela de Autoria, Barra do Aplicativo, e a lista passa a exibir
+  os produtos cadastrados via `startActivityForResult` / `onActivityResult`.
+
+## Créditos
+
+- Ícone do aplicativo: **Freepik** via **Flaticon** (flaticon.com).
+- Logo da UTFPR: propriedade da Universidade Tecnológica Federal do Paraná,
+  usado apenas para identificação acadêmica.

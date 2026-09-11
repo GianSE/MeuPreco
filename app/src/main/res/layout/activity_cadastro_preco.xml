@@ -6,31 +6,20 @@
     rolado em telas pequenas (testado no perfil Nexus 4).
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- ===================== Faixa verde (barra de titulo) ===================== -->
-    <LinearLayout
-        android:id="@+id/barraTopo"
+    <!-- ===================== Barra do Aplicativo (Toolbar) ===================== -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/verde_500"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/titulo_activity_cadastro"
-            android:textColor="@color/branco"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/branco" />
 
     <ScrollView
         android:id="@+id/scrollFormulario"
@@ -122,6 +111,7 @@
                 <EditText
                     android:id="@+id/editPreco"
                     style="@style/CampoTexto"
+                    android:digits="0123456789.,"
                     android:hint="@string/hint_preco"
                     android:importantForAutofill="no"
                     android:inputType="numberDecimal"
@@ -141,6 +131,7 @@
                 <EditText
                     android:id="@+id/editQuantidade"
                     style="@style/CampoTexto"
+                    android:digits="0123456789.,"
                     android:hint="@string/hint_quantidade"
                     android:importantForAutofill="no"
                     android:inputType="numberDecimal"
