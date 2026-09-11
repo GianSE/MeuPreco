@@ -5,6 +5,8 @@ Aplicativo de **registro pessoal de preços de produtos em mercados**.
 Esta entrega contém a Activity `CadastroPrecoActivity`, com o formulário de
 cadastro de um registro de preço.
 
+Autor: **Gian Pedro Rodrigues**
+
 ## Configuração do projeto
 
 | Item | Valor |
@@ -14,7 +16,20 @@ cadastro de um registro de preço.
 | `targetSdk` / `compileSdk` | 36 (Android 16) |
 | Android Gradle Plugin | 9.0.1 |
 | Gradle | 9.1.0 |
-| Tela mínima testada | 4.7" (perfil Nexus 4) |
+| IDE | Android Studio Quail 2026.1.3 |
+
+## Ambiente de teste
+
+Testado em **dispositivo real**, cuja tela é maior que o mínimo de 4.7"
+exigido (perfil Nexus 4).
+
+| Item | Valor |
+|---|---|
+| Aparelho | Samsung Galaxy A16 5G (SM-A166M) |
+| Sistema | Android 16 (API 36) |
+| Resolução | 1080 × 2340 px |
+| Densidade | 450 dpi |
+| Tamanho da tela | ~6.7" (acima do mínimo de 4.7") |
 
 ## Componentes usados no formulário
 
