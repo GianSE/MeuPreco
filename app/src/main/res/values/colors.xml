@@ -7,4 +7,5 @@
     <color name="branco">#FFFFFFFF</color>
     <color name="preto">#FF000000</color>
     <color name="cinza_texto">#FF424242</color>
+    <color name="ic_launcher_background">#FFFFFFFF</color>
 </resources>
