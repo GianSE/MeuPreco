@@ -59,4 +59,9 @@
     <string name="msg_limpo">Formulário limpo!</string>
     <string name="campo_obrigatorio">Campo obrigatório</string>
     <string name="nenhuma_opcao">Nenhuma</string>
+
+    <!-- Entrega 2 - tela de listagem -->
+    <string name="titulo_lista">Meu Preço</string>
+    <string name="subtitulo_lista">Preços registrados nos mercados</string>
+    <string name="item_clicado">Selecionado: %1$s (%2$s) — R$ %3$s</string>
 </resources>

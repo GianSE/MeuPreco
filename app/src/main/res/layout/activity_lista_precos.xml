@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Tela principal (Launcher) da Entrega 2.
+    A raiz e um LinearLayout vertical: faixa verde no topo e, abaixo, a
+    ListView ocupando todo o restante da tela.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/raiz"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- ===================== Faixa verde (barra de titulo) ===================== -->
+    <LinearLayout
+        android:id="@+id/barraTopo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verde_500"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_lista"
+            android:textColor="@color/branco"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/subtitulo_lista"
+            android:textColor="@color/verde_200"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- ===================== Lista de produtos ===================== -->
+    <ListView
+        android:id="@+id/listaProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:divider="@color/cinza_divisor"
+        android:dividerHeight="1dp"
+        android:paddingTop="4dp" />
+
+</LinearLayout>

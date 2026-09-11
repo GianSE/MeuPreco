@@ -8,4 +8,5 @@
     <color name="preto">#FF000000</color>
     <color name="cinza_texto">#FF424242</color>
     <color name="ic_launcher_background">#FFFFFFFF</color>
+    <color name="cinza_divisor">#FFE0E0E0</color>
 </resources>
