@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".MeuPrecoApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -35,6 +36,12 @@
             android:name=".AutoriaActivity"
             android:exported="false"
             android:label="@string/titulo_autoria" />
+
+        <!-- Activity de Configurações (Entrega 5). Aberta pelo menu da lista. -->
+        <activity
+            android:name=".ConfiguracoesActivity"
+            android:exported="false"
+            android:label="@string/titulo_configuracoes" />
     </application>
 
 </manifest>

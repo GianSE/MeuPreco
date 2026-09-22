@@ -1,97 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Default language: English (Entrega 5 - internationalization). -->
 <resources>
     <string name="app_name">Meu Preço</string>
-    <string name="titulo_activity_cadastro">Meu Preço - Novo Registro</string>
+    <string name="titulo_activity_cadastro">Meu Preço - New Record</string>
 
-    <string name="cabecalho">Registro de Preço de Produto</string>
-    <string name="subtitulo">Anote quanto você pagou e onde comprou.</string>
+    <string name="cabecalho">Product Price Record</string>
+    <string name="subtitulo">Note how much you paid and where you bought it.</string>
 
-    <string name="label_produto">Nome do produto:</string>
-    <string name="hint_produto">Ex.: Arroz branco tipo 1 - 5 kg</string>
+    <string name="label_produto">Product name:</string>
+    <string name="hint_produto">E.g.: White rice type 1 - 5 kg</string>
 
-    <string name="label_marca">Marca:</string>
-    <string name="hint_marca">Ex.: Tio João</string>
+    <string name="label_marca">Brand:</string>
+    <string name="hint_marca">E.g.: Tio João</string>
 
-    <string name="label_mercado">Mercado:</string>
-    <string name="hint_mercado">Ex.: Supermercado Central</string>
+    <string name="label_mercado">Market:</string>
+    <string name="hint_mercado">E.g.: Central Supermarket</string>
 
-    <string name="label_preco">Preço pago (R$):</string>
-    <string name="hint_preco">Ex.: 24,90</string>
+    <string name="label_preco">Price paid ($):</string>
+    <string name="hint_preco">E.g.: 24.90</string>
 
-    <string name="label_quantidade">Quantidade comprada:</string>
-    <string name="hint_quantidade">Ex.: 2</string>
+    <string name="label_quantidade">Quantity bought:</string>
+    <string name="hint_quantidade">E.g.: 2</string>
 
-    <string name="label_categoria">Categoria do produto:</string>
+    <string name="label_categoria">Product category:</string>
 
-    <string name="label_unidade">Unidade de medida:</string>
-    <string name="rb_unidade">Unidade</string>
-    <string name="rb_quilo">Quilo (kg)</string>
-    <string name="rb_litro">Litro (L)</string>
+    <string name="label_unidade">Unit of measure:</string>
+    <string name="rb_unidade">Unit</string>
+    <string name="rb_quilo">Kilo (kg)</string>
+    <string name="rb_litro">Liter (L)</string>
 
-    <string name="label_pagamento">Forma de pagamento:</string>
-    <string name="rb_dinheiro">Dinheiro</string>
-    <string name="rb_cartao">Cartão</string>
+    <string name="label_pagamento">Payment method:</string>
+    <string name="rb_dinheiro">Cash</string>
+    <string name="rb_cartao">Card</string>
     <string name="rb_pix">Pix</string>
 
-    <string name="label_opcoes">Opções adicionais:</string>
-    <string name="cb_promocao">Preço promocional</string>
-    <string name="cb_favorito">Mercado favorito</string>
-    <string name="cb_lembrete">Avisar quando o preço baixar</string>
+    <string name="label_opcoes">Additional options:</string>
+    <string name="cb_promocao">Promotional price</string>
+    <string name="cb_favorito">Favorite market</string>
+    <string name="cb_lembrete">Notify when the price drops</string>
 
-    <string name="label_observacoes">Observações:</string>
-    <string name="hint_observacoes">Ex.: promoção válida até domingo</string>
+    <string name="label_observacoes">Notes:</string>
+    <string name="hint_observacoes">E.g.: promo valid until Sunday</string>
 
-    <string name="bt_salvar">Salvar</string>
-    <string name="bt_limpar">Limpar</string>
+    <string name="bt_salvar">Save</string>
+    <string name="bt_limpar">Clear</string>
 
-    <string name="erro_produto">Informe o nome do produto!</string>
-    <string name="erro_marca">Informe a marca do produto!</string>
-    <string name="erro_mercado">Informe o nome do mercado!</string>
-    <string name="erro_preco">Informe o preço pago!</string>
-    <string name="erro_preco_invalido">Preço inválido! Use apenas números.</string>
-    <string name="erro_quantidade">Informe a quantidade comprada!</string>
-    <string name="erro_quantidade_invalida">Quantidade inválida! Use apenas números.</string>
-    <string name="erro_observacoes">Informe alguma observação sobre a compra!</string>
-    <string name="erro_categoria">Selecione a categoria do produto!</string>
-    <string name="erro_unidade">Selecione a unidade de medida!</string>
-    <string name="erro_pagamento">Selecione a forma de pagamento!</string>
+    <string name="erro_produto">Enter the product name!</string>
+    <string name="erro_marca">Enter the product brand!</string>
+    <string name="erro_mercado">Enter the market name!</string>
+    <string name="erro_preco">Enter the price paid!</string>
+    <string name="erro_preco_invalido">Invalid price! Use numbers only.</string>
+    <string name="erro_quantidade">Enter the quantity bought!</string>
+    <string name="erro_quantidade_invalida">Invalid quantity! Use numbers only.</string>
+    <string name="erro_observacoes">Enter a note about the purchase!</string>
+    <string name="erro_categoria">Select the product category!</string>
+    <string name="erro_unidade">Select the unit of measure!</string>
+    <string name="erro_pagamento">Select the payment method!</string>
 
-    <string name="msg_limpo">Formulário limpo!</string>
-    <string name="campo_obrigatorio">Campo obrigatório</string>
-    <string name="nenhuma_opcao">Nenhuma</string>
+    <string name="msg_limpo">Form cleared!</string>
+    <string name="campo_obrigatorio">Required field</string>
+    <string name="nenhuma_opcao">None</string>
 
-    <!-- Entrega 2 - tela de listagem -->
+    <!-- Listing screen -->
     <string name="titulo_lista">Meu Preço</string>
-    <string name="subtitulo_lista">Preços registrados nos mercados</string>
-    <string name="item_clicado">Selecionado: %1$s (%2$s) — R$ %3$s</string>
+    <string name="subtitulo_lista">Prices recorded at markets</string>
+    <string name="item_clicado">Selected: %1$s (%2$s) — $ %3$s</string>
 
-    <!-- Entrega 3 - listagem, cadastro e autoria -->
-    <string name="bt_adicionar">Adicionar</string>
-    <string name="bt_sobre">Sobre</string>
-    <string name="lista_vazia">Nenhum preço cadastrado ainda.\nToque em ADICIONAR para cadastrar um produto.</string>
-    <string name="produto_adicionado">%1$s adicionado à lista!</string>
-    <string name="titulo_cadastro_bar">Novo registro</string>
+    <!-- Listing, form and about -->
+    <string name="bt_adicionar">Add</string>
+    <string name="bt_sobre">About</string>
+    <string name="lista_vazia">No prices recorded yet.\nTap ADD to register a product.</string>
+    <string name="produto_adicionado">%1$s added to the list!</string>
+    <string name="titulo_cadastro_bar">New record</string>
 
-    <string name="titulo_autoria">Sobre o app</string>
-    <string name="autoria_descricao">O Meu Preço é um aplicativo para registro pessoal de preços de produtos em mercados. Ele permite cadastrar produtos com marca, mercado, categoria, unidade e preço, e listar os registros feitos.</string>
-    <string name="autoria_rotulo_aluno">Aluno</string>
+    <string name="titulo_autoria">About the app</string>
+    <string name="autoria_descricao">Meu Preço is an app for personal recording of product prices at markets. It lets you register products with brand, market, category, unit and price, and list the records made.</string>
+    <string name="autoria_rotulo_aluno">Student</string>
     <string name="autoria_aluno">Gian Pedro Rodrigues</string>
-    <string name="autoria_rotulo_curso">Curso</string>
-    <string name="autoria_curso">Engenharia da Computação</string>
+    <string name="autoria_rotulo_curso">Course</string>
+    <string name="autoria_curso">Computer Engineering</string>
     <string name="autoria_rotulo_email">E-mail</string>
     <string name="autoria_email">gian.2000@alunos.utfpr.edu.br</string>
-    <string name="autoria_utfpr_nome">Universidade Tecnológica Federal do Paraná</string>
-    <string name="autoria_disciplina">Disciplina: Programação para Dispositivos Móveis</string>
-    <string name="autoria_credito">Ícone do aplicativo por Freepik — Flaticon (flaticon.com)</string>
+    <string name="autoria_utfpr_nome">Federal University of Technology - Paraná</string>
+    <string name="autoria_disciplina">Subject: Mobile Device Programming</string>
+    <string name="autoria_credito">App icon by Freepik — Flaticon (flaticon.com)</string>
 
-    <!-- Entrega 4 - menus e ação contextual -->
-    <string name="menu_adicionar">Adicionar</string>
-    <string name="menu_sobre">Sobre</string>
-    <string name="menu_editar">Editar</string>
-    <string name="menu_excluir">Excluir</string>
-    <string name="menu_salvar">Salvar</string>
-    <string name="menu_limpar">Limpar</string>
-    <string name="titulo_cadastro_editar">Editar registro</string>
-    <string name="produto_editado">%1$s atualizado!</string>
-    <string name="produto_excluido">%1$s removido da lista!</string>
+    <!-- Menus and contextual action -->
+    <string name="menu_adicionar">Add</string>
+    <string name="menu_sobre">About</string>
+    <string name="menu_editar">Edit</string>
+    <string name="menu_excluir">Delete</string>
+    <string name="menu_salvar">Save</string>
+    <string name="menu_limpar">Clear</string>
+    <string name="titulo_cadastro_editar">Edit record</string>
+    <string name="produto_editado">%1$s updated!</string>
+    <string name="produto_excluido">%1$s removed from the list!</string>
+
+    <!-- Entrega 5 - settings and internationalization -->
+    <string name="menu_configuracoes">Settings</string>
+    <string name="titulo_configuracoes">Settings</string>
+    <string name="config_idioma">Language</string>
+    <string name="idioma_sistema">System default</string>
+    <string name="idioma_ingles">English</string>
+    <string name="idioma_portugues">Portuguese (Brazil)</string>
+    <string name="config_ordenacao">Sort list by</string>
+    <string name="ordenacao_nome">Name</string>
+    <string name="ordenacao_preco">Price</string>
+    <string name="config_sugerir_titulo">Suggest last market</string>
+    <string name="config_sugerir_desc">When adding a product, prefill the Market field with the last one used.</string>
+    <string name="bt_restaurar">Restore defaults</string>
+    <string name="msg_padroes_restaurados">Settings restored to defaults!</string>
 </resources>

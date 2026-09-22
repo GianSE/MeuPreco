@@ -19,6 +19,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Locale;
 
 /**
@@ -41,6 +43,7 @@ public class ListaPrecosActivity extends AppCompatActivity {
 
     private final ArrayList<Produto> produtos = new ArrayList<>();
     private ProdutoAdapter adapter;
+    private Preferencias prefs;
 
     private Toolbar toolbar;
     private ListView listaProdutos;
@@ -58,6 +61,8 @@ public class ListaPrecosActivity extends AppCompatActivity {
         androidx.core.view.WindowInsetsControllerCompat controlador =
                 androidx.core.view.WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
         controlador.setAppearanceLightStatusBars(false);
+
+        prefs = new Preferencias(this);
 
         toolbar = findViewById(R.id.toolbar);
         listaProdutos = findViewById(R.id.listaProdutos);
@@ -121,11 +126,47 @@ public class ListaPrecosActivity extends AppCompatActivity {
             Intent intent = new Intent(this, CadastroPrecoActivity.class);
             startActivityForResult(intent, REQUISICAO_ADICIONAR);
             return true;
+        } else if (id == R.id.acao_configuracoes) {
+            startActivity(new Intent(this, ConfiguracoesActivity.class));
+            return true;
         } else if (id == R.id.acao_sobre) {
             startActivity(new Intent(this, AutoriaActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Ao voltar para a lista (inclusive vindo das Configurações), aplica a
+     * ordenação escolhida pelo usuário e salva no SharedPreferences.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        aplicarOrdenacao();
+    }
+
+    /**
+     * Ordena o ArrayList por nome ou por preço, conforme a preferência, e
+     * atualiza a ListView.
+     */
+    private void aplicarOrdenacao() {
+        if (Preferencias.ORDENACAO_PRECO.equals(prefs.getOrdenacao())) {
+            Collections.sort(produtos, new Comparator<Produto>() {
+                @Override
+                public int compare(Produto a, Produto b) {
+                    return Double.compare(a.getPreco(), b.getPreco());
+                }
+            });
+        } else {
+            Collections.sort(produtos, new Comparator<Produto>() {
+                @Override
+                public int compare(Produto a, Produto b) {
+                    return a.getNome().compareToIgnoreCase(b.getNome());
+                }
+            });
+        }
+        adapter.notifyDataSetChanged();
     }
 
     // ------------------------------------------------------------------

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Tela de Configurações (Entrega 5). As escolhas são persistidas em
+    SharedPreferences (classe Preferencias).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/raiz"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verde_500"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/branco" />
+
+    <ScrollView
+        android:id="@+id/conteudo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- ===================== Idioma ===================== -->
+            <TextView
+                style="@style/RotuloCampo"
+                android:text="@string/config_idioma" />
+
+            <RadioGroup
+                android:id="@+id/grupoIdioma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radioIdiomaSistema"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/idioma_sistema" />
+
+                <RadioButton
+                    android:id="@+id/radioIdiomaIngles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/idioma_ingles" />
+
+                <RadioButton
+                    android:id="@+id/radioIdiomaPortugues"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/idioma_portugues" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/cinza_divisor" />
+
+            <!-- ===================== Ordenação ===================== -->
+            <TextView
+                style="@style/RotuloCampo"
+                android:text="@string/config_ordenacao" />
+
+            <RadioGroup
+                android:id="@+id/grupoOrdenacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radioOrdenacaoNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ordenacao_nome" />
+
+                <RadioButton
+                    android:id="@+id/radioOrdenacaoPreco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ordenacao_preco" />
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/cinza_divisor" />
+
+            <!-- ===================== Sugerir preenchimento ===================== -->
+            <TextView
+                style="@style/RotuloCampo"
+                android:text="@string/config_sugerir_titulo" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchSugerir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_sugerir_desc"
+                android:textColor="@color/cinza_texto" />
+
+            <!-- ===================== Restaurar padrões ===================== -->
+            <Button
+                android:id="@+id/botaoRestaurar"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/bt_restaurar" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

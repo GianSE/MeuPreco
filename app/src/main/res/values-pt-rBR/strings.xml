@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Português do Brasil (Entrega 5 - internacionalização). -->
+<resources>
+    <string name="app_name">Meu Preço</string>
+    <string name="titulo_activity_cadastro">Meu Preço - Novo Registro</string>
+
+    <string name="cabecalho">Registro de Preço de Produto</string>
+    <string name="subtitulo">Anote quanto você pagou e onde comprou.</string>
+
+    <string name="label_produto">Nome do produto:</string>
+    <string name="hint_produto">Ex.: Arroz branco tipo 1 - 5 kg</string>
+
+    <string name="label_marca">Marca:</string>
+    <string name="hint_marca">Ex.: Tio João</string>
+
+    <string name="label_mercado">Mercado:</string>
+    <string name="hint_mercado">Ex.: Supermercado Central</string>
+
+    <string name="label_preco">Preço pago (R$):</string>
+    <string name="hint_preco">Ex.: 24,90</string>
+
+    <string name="label_quantidade">Quantidade comprada:</string>
+    <string name="hint_quantidade">Ex.: 2</string>
+
+    <string name="label_categoria">Categoria do produto:</string>
+
+    <string name="label_unidade">Unidade de medida:</string>
+    <string name="rb_unidade">Unidade</string>
+    <string name="rb_quilo">Quilo (kg)</string>
+    <string name="rb_litro">Litro (L)</string>
+
+    <string name="label_pagamento">Forma de pagamento:</string>
+    <string name="rb_dinheiro">Dinheiro</string>
+    <string name="rb_cartao">Cartão</string>
+    <string name="rb_pix">Pix</string>
+
+    <string name="label_opcoes">Opções adicionais:</string>
+    <string name="cb_promocao">Preço promocional</string>
+    <string name="cb_favorito">Mercado favorito</string>
+    <string name="cb_lembrete">Avisar quando o preço baixar</string>
+
+    <string name="label_observacoes">Observações:</string>
+    <string name="hint_observacoes">Ex.: promoção válida até domingo</string>
+
+    <string name="bt_salvar">Salvar</string>
+    <string name="bt_limpar">Limpar</string>
+
+    <string name="erro_produto">Informe o nome do produto!</string>
+    <string name="erro_marca">Informe a marca do produto!</string>
+    <string name="erro_mercado">Informe o nome do mercado!</string>
+    <string name="erro_preco">Informe o preço pago!</string>
+    <string name="erro_preco_invalido">Preço inválido! Use apenas números.</string>
+    <string name="erro_quantidade">Informe a quantidade comprada!</string>
+    <string name="erro_quantidade_invalida">Quantidade inválida! Use apenas números.</string>
+    <string name="erro_observacoes">Informe alguma observação sobre a compra!</string>
+    <string name="erro_categoria">Selecione a categoria do produto!</string>
+    <string name="erro_unidade">Selecione a unidade de medida!</string>
+    <string name="erro_pagamento">Selecione a forma de pagamento!</string>
+
+    <string name="msg_limpo">Formulário limpo!</string>
+    <string name="campo_obrigatorio">Campo obrigatório</string>
+    <string name="nenhuma_opcao">Nenhuma</string>
+
+    <!-- Tela de listagem -->
+    <string name="titulo_lista">Meu Preço</string>
+    <string name="subtitulo_lista">Preços registrados nos mercados</string>
+    <string name="item_clicado">Selecionado: %1$s (%2$s) — R$ %3$s</string>
+
+    <!-- Listagem, cadastro e autoria -->
+    <string name="bt_adicionar">Adicionar</string>
+    <string name="bt_sobre">Sobre</string>
+    <string name="lista_vazia">Nenhum preço cadastrado ainda.\nToque em ADICIONAR para cadastrar um produto.</string>
+    <string name="produto_adicionado">%1$s adicionado à lista!</string>
+    <string name="titulo_cadastro_bar">Novo registro</string>
+
+    <string name="titulo_autoria">Sobre o app</string>
+    <string name="autoria_descricao">O Meu Preço é um aplicativo para registro pessoal de preços de produtos em mercados. Ele permite cadastrar produtos com marca, mercado, categoria, unidade e preço, e listar os registros feitos.</string>
+    <string name="autoria_rotulo_aluno">Aluno</string>
+    <string name="autoria_aluno">Gian Pedro Rodrigues</string>
+    <string name="autoria_rotulo_curso">Curso</string>
+    <string name="autoria_curso">Engenharia da Computação</string>
+    <string name="autoria_rotulo_email">E-mail</string>
+    <string name="autoria_email">gian.2000@alunos.utfpr.edu.br</string>
+    <string name="autoria_utfpr_nome">Universidade Tecnológica Federal do Paraná</string>
+    <string name="autoria_disciplina">Disciplina: Programação para Dispositivos Móveis</string>
+    <string name="autoria_credito">Ícone do aplicativo por Freepik — Flaticon (flaticon.com)</string>
+
+    <!-- Menus e ação contextual -->
+    <string name="menu_adicionar">Adicionar</string>
+    <string name="menu_sobre">Sobre</string>
+    <string name="menu_editar">Editar</string>
+    <string name="menu_excluir">Excluir</string>
+    <string name="menu_salvar">Salvar</string>
+    <string name="menu_limpar">Limpar</string>
+    <string name="titulo_cadastro_editar">Editar registro</string>
+    <string name="produto_editado">%1$s atualizado!</string>
+    <string name="produto_excluido">%1$s removido da lista!</string>
+
+    <!-- Entrega 5 - configurações e internacionalização -->
+    <string name="menu_configuracoes">Configurações</string>
+    <string name="titulo_configuracoes">Configurações</string>
+    <string name="config_idioma">Idioma</string>
+    <string name="idioma_sistema">Padrão do sistema</string>
+    <string name="idioma_ingles">Inglês</string>
+    <string name="idioma_portugues">Português (Brasil)</string>
+    <string name="config_ordenacao">Ordenar lista por</string>
+    <string name="ordenacao_nome">Nome</string>
+    <string name="ordenacao_preco">Preço</string>
+    <string name="config_sugerir_titulo">Sugerir último mercado</string>
+    <string name="config_sugerir_desc">Ao adicionar um produto, preencher o campo Mercado com o último usado.</string>
+    <string name="bt_restaurar">Restaurar padrões</string>
+    <string name="msg_padroes_restaurados">Configurações restauradas para o padrão!</string>
+</resources>

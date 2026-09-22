@@ -10,6 +10,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/acao_configuracoes"
+        android:title="@string/menu_configuracoes"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/acao_sobre"
         android:title="@string/menu_sobre"
         app:showAsAction="never" />

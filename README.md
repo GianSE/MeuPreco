@@ -1,10 +1,12 @@
-# Meu Preço — Entrega 3
+# Meu Preço — Entrega 5
 
 Aplicativo de **registro pessoal de preços de produtos em mercados**.
 
-O app abre na tela de **Listagem** (Launcher). A partir dela o usuário pode
-**Adicionar** um produto (abrindo o formulário de Cadastro e recebendo o
-resultado de volta) e ver detalhes de **Sobre** (tela de Autoria do app).
+O app abre na tela de **Listagem** (Launcher). Pelo **menu de opções** o usuário
+pode **Adicionar** um produto (formulário de Cadastro), abrir **Configurações**
+ou **Sobre** (Autoria). Ao manter um item pressionado, um **Menu de Ação
+Contextual** permite **Editar** ou **Excluir**. O app é **internacionalizado**
+(Inglês padrão + Português) e guarda **configurações** com SharedPreferences.
 
 Autor: **Gian Pedro Rodrigues** — Engenharia da Computação — UTFPR
 
@@ -35,15 +37,15 @@ exigido (perfil Nexus 4).
 ## Telas (Activities)
 
 - **ListaPrecosActivity** (principal / Launcher) — exibe em uma `ListView` os
-  produtos cadastrados pelo usuário, usando o `ProdutoAdapter` customizado.
-  Possui os botões **Adicionar** (abre o Cadastro com `startActivityForResult`)
-  e **Sobre** (abre a Autoria com `startActivity`). Ao tocar em um item, um
-  Toast identifica o produto.
-- **CadastroPrecoActivity** (formulário) — ao clicar em **Salvar**, valida os
-  campos e devolve os dados à lista com `setResult(RESULT_OK)`; ao clicar em
-  **Limpar**, limpa o formulário.
-- **AutoriaActivity** — exibe os dados de autoria (aluno, curso, e-mail),
-  a descrição do app e o logo e nome da UTFPR.
+  produtos cadastrados, usando o `ProdutoAdapter` customizado. Tem um **menu de
+  opções** (Adicionar / Configurações / Sobre) e um **Menu de Ação Contextual**
+  (Editar / Excluir) ao manter um item pressionado.
+- **CadastroPrecoActivity** (formulário) — menu **Salvar** (valida e devolve com
+  `setResult(RESULT_OK)`) e **Limpar**; abre também em **modo edição** já
+  preenchida. Botão **Up** cancela.
+- **AutoriaActivity** — dados de autoria (aluno, curso, e-mail), descrição, logo
+  e nome da UTFPR. Botão **Up** volta.
+- **ConfiguracoesActivity** — configurações persistidas em SharedPreferences.
 
 ## Entidade e listagem
 
@@ -66,7 +68,29 @@ topo (barra de status / recorte da câmera) é aplicado à Toolbar via
 
 - **ScrollView** — permite rolar o formulário em telas pequenas.
 - **EditText** (6), **Spinner** (1), **RadioGroup** (2) com **RadioButton** (6),
-  **CheckBox** (3) e **Button** (2 — "Salvar" e "Limpar").
+  **CheckBox** (3). As ações Salvar/Limpar ficam no menu de opções.
+
+## Internacionalização (Entrega 5)
+
+- `values/strings.xml` (e `values/arrays.xml`) em **Inglês** — idioma padrão.
+- `values-pt-rBR/strings.xml` (e `arrays.xml`) em **Português do Brasil**.
+- Todos os textos fixos (telas, menus e Toasts) têm as duas traduções.
+- Um seletor de idioma (Sistema / English / Português) aplica o idioma em tempo
+  de execução com `AppCompatDelegate.setApplicationLocales`.
+
+## Configurações com SharedPreferences (Entrega 5)
+
+A classe **`Preferencias`** encapsula o `SharedPreferences` e a
+**`ConfiguracoesActivity`** permite:
+
+- **Idioma** — Sistema / Inglês / Português (persistido e reaplicado no início
+  pela classe `MeuPrecoApp`).
+- **Ordenação da lista** — por Nome ou por Preço.
+- **Sugerir último mercado** — quando ligado, o campo Mercado do cadastro já vem
+  preenchido com o último mercado usado.
+- **Restaurar padrões** — volta todas as configurações ao padrão.
+
+Nenhum login/senha é salvo — apenas preferências de interface.
 
 ## Histórico das entregas
 
@@ -75,6 +99,10 @@ topo (barra de status / recorte da câmera) é aplicado à Toolbar via
   `ProdutoAdapter` customizado e clique com Toast.
 - **Entrega 3** — tela de Autoria, Barra do Aplicativo, e a lista passa a exibir
   os produtos cadastrados via `startActivityForResult` / `onActivityResult`.
+- **Entrega 4** — menus de opções, Menu de Ação Contextual (Editar/Excluir),
+  edição de itens e botões Up.
+- **Entrega 5** — internacionalização (EN/PT) e configurações persistidas com
+  SharedPreferences.
 
 ## Créditos
 

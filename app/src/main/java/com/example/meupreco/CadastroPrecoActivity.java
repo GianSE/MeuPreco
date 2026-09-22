@@ -68,6 +68,8 @@ public class CadastroPrecoActivity extends AppCompatActivity {
     // Indica se a tela foi aberta em modo de edição de um item já existente.
     private boolean modoEdicao = false;
 
+    private Preferencias prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,8 @@ public class CadastroPrecoActivity extends AppCompatActivity {
                 androidx.core.view.WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
         controlador.setAppearanceLightStatusBars(false);
 
+        prefs = new Preferencias(this);
+
         buscarComponentes();
         configurarSpinner();
         tratarBarrasDoSistema();
@@ -86,6 +90,12 @@ public class CadastroPrecoActivity extends AppCompatActivity {
         modoEdicao = getIntent().hasExtra(EXTRA_NOME);
         if (modoEdicao) {
             preencherCampos(getIntent());
+        } else if (prefs.isSugerirMercado()) {
+            // Sugestão (SharedPreferences): preenche o Mercado com o último usado.
+            String ultimoMercado = prefs.getUltimoMercado();
+            if (!ultimoMercado.isEmpty()) {
+                editMercado.setText(ultimoMercado);
+            }
         }
 
         // Exibe a Barra do Aplicativo com título e botão de voltar (cancelar).
@@ -302,6 +312,9 @@ public class CadastroPrecoActivity extends AppCompatActivity {
         // Os campos quantidade, forma de pagamento, opções e observações
         // continuam no formulário, mas são opcionais: não fazem parte da
         // entidade Produto exibida (e persistida) na lista.
+
+        // Guarda o último mercado usado (usado pela sugestão de preenchimento).
+        prefs.setUltimoMercado(mercado);
 
         // --- Formulário válido: devolve os dados à tela de Listagem ---
         Intent resultado = new Intent();

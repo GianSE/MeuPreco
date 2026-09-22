@@ -1,111 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Default language: English. -->
 <resources>
     <string-array name="categorias">
-        <item>Selecione uma categoria</item>
-        <item>Alimentos</item>
-        <item>Bebidas</item>
-        <item>Carnes e frios</item>
-        <item>Hortifrúti</item>
-        <item>Higiene pessoal</item>
-        <item>Limpeza</item>
-        <item>Padaria</item>
+        <item>Select a category</item>
+        <item>Food</item>
+        <item>Drinks</item>
+        <item>Meat and cold cuts</item>
+        <item>Fruits &amp; vegetables</item>
+        <item>Personal hygiene</item>
+        <item>Cleaning</item>
+        <item>Bakery</item>
         <item>Pet</item>
-        <item>Outros</item>
-    </string-array>
-
-    <!-- ============================================================
-         Dados para instanciar os objetos Produto (Entrega 2).
-         Os seis arrays abaixo sao PARALELOS: o indice i de cada um
-         forma um Produto. Todos possuem 12 itens (>= 10 exigidos).
-         ============================================================ -->
-
-    <string-array name="dados_nomes">
-        <item>Arroz branco tipo 1 5kg</item>
-        <item>Feijão carioca 1kg</item>
-        <item>Óleo de soja 900ml</item>
-        <item>Açúcar refinado 1kg</item>
-        <item>Café torrado e moído 500g</item>
-        <item>Leite integral 1L</item>
-        <item>Macarrão espaguete 500g</item>
-        <item>Farinha de trigo 1kg</item>
-        <item>Sabão em pó 1kg</item>
-        <item>Detergente neutro 500ml</item>
-        <item>Refrigerante cola 2L</item>
-        <item>Papel higiênico 12 rolos</item>
-    </string-array>
-
-    <string-array name="dados_marcas">
-        <item>Tio João</item>
-        <item>Camil</item>
-        <item>Liza</item>
-        <item>União</item>
-        <item>Pilão</item>
-        <item>Itambé</item>
-        <item>Renata</item>
-        <item>Dona Benta</item>
-        <item>Omo</item>
-        <item>Ypê</item>
-        <item>Coca-Cola</item>
-        <item>Neve</item>
-    </string-array>
-
-    <string-array name="dados_mercados">
-        <item>Supermercado Central</item>
-        <item>Atacadão</item>
-        <item>Assaí</item>
-        <item>Extra</item>
-        <item>Carrefour</item>
-        <item>Supermercado Central</item>
-        <item>Atacadão</item>
-        <item>Assaí</item>
-        <item>Extra</item>
-        <item>Carrefour</item>
-        <item>Supermercado Central</item>
-        <item>Atacadão</item>
-    </string-array>
-
-    <string-array name="dados_categorias">
-        <item>Alimentos</item>
-        <item>Alimentos</item>
-        <item>Alimentos</item>
-        <item>Alimentos</item>
-        <item>Alimentos</item>
-        <item>Bebidas</item>
-        <item>Alimentos</item>
-        <item>Alimentos</item>
-        <item>Limpeza</item>
-        <item>Limpeza</item>
-        <item>Bebidas</item>
-        <item>Higiene pessoal</item>
-    </string-array>
-
-    <string-array name="dados_unidades">
-        <item>Pacote</item>
-        <item>Pacote</item>
-        <item>Unidade</item>
-        <item>Pacote</item>
-        <item>Pacote</item>
-        <item>Litro</item>
-        <item>Pacote</item>
-        <item>Pacote</item>
-        <item>Caixa</item>
-        <item>Unidade</item>
-        <item>Litro</item>
-        <item>Pacote</item>
-    </string-array>
-
-    <string-array name="dados_precos">
-        <item>27,90</item>
-        <item>8,49</item>
-        <item>7,29</item>
-        <item>4,99</item>
-        <item>15,90</item>
-        <item>5,49</item>
-        <item>3,99</item>
-        <item>6,29</item>
-        <item>19,90</item>
-        <item>2,79</item>
-        <item>9,49</item>
-        <item>24,90</item>
+        <item>Others</item>
     </string-array>
 </resources>
