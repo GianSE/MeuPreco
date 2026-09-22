@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menu de opções da tela de Cadastro (Entrega 4). -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/acao_salvar"
+        android:icon="@drawable/ic_save"
+        android:title="@string/menu_salvar"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/acao_limpar"
+        android:icon="@drawable/ic_clear"
+        android:title="@string/menu_limpar"
+        app:showAsAction="ifRoom" />
+</menu>

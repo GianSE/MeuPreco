@@ -2,9 +2,10 @@ package com.example.meupreco;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -13,11 +14,14 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Locale;
 
 /**
  * Meu Preço - Entrega 1 (atualizada na Entrega 3).
@@ -28,7 +32,7 @@ import androidx.core.view.WindowInsetsCompat;
  * O layout usa ScrollView para que o formulário possa ser rolado em
  * aparelhos com tela pequena (a partir de 4.7", como o perfil Nexus 4).
  */
-public class CadastroPrecoActivity extends AppCompatActivity implements View.OnClickListener {
+public class CadastroPrecoActivity extends AppCompatActivity {
 
     // Posição do item "Selecione uma categoria" dentro do Spinner.
     private static final int POSICAO_CATEGORIA_VAZIA = 0;
@@ -61,8 +65,8 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
     private CheckBox checkFavorito;
     private CheckBox checkLembrete;
 
-    private Button botaoSalvar;
-    private Button botaoLimpar;
+    // Indica se a tela foi aberta em modo de edição de um item já existente.
+    private boolean modoEdicao = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,19 +79,49 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
         controlador.setAppearanceLightStatusBars(false);
 
         buscarComponentes();
+        configurarSpinner();
+        tratarBarrasDoSistema();
+
+        // Se veio com dados de um item, abre em modo de edição e preenche o form.
+        modoEdicao = getIntent().hasExtra(EXTRA_NOME);
+        if (modoEdicao) {
+            preencherCampos(getIntent());
+        }
 
         // Exibe a Barra do Aplicativo com título e botão de voltar (cancelar).
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(R.string.titulo_cadastro_bar);
+            getSupportActionBar().setTitle(
+                    modoEdicao ? R.string.titulo_cadastro_editar : R.string.titulo_cadastro_bar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
 
-        configurarSpinner();
-        tratarBarrasDoSistema();
+    // ------------------------------------------------------------------
+    // Menu de opções (Salvar / Limpar) e botão Up
+    // ------------------------------------------------------------------
 
-        botaoSalvar.setOnClickListener(this);
-        botaoLimpar.setOnClickListener(this);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_cadastro, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.acao_salvar) {
+            salvar();
+            return true;
+        } else if (id == R.id.acao_limpar) {
+            limpar();
+            return true;
+        } else if (id == android.R.id.home) {
+            // Botão Up: cancela a inclusão/edição e volta para a Listagem.
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -123,9 +157,54 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
         checkPromocao = findViewById(R.id.checkPromocao);
         checkFavorito = findViewById(R.id.checkFavorito);
         checkLembrete = findViewById(R.id.checkLembrete);
+    }
 
-        botaoSalvar = findViewById(R.id.botaoSalvar);
-        botaoLimpar = findViewById(R.id.botaoLimpar);
+    /**
+     * Preenche o formulário com os dados de um produto recebido por Intent
+     * (modo edição), para que o usuário possa alterá-los.
+     */
+    private void preencherCampos(Intent intent) {
+        editProduto.setText(intent.getStringExtra(EXTRA_NOME));
+        editMarca.setText(intent.getStringExtra(EXTRA_MARCA));
+        editMercado.setText(intent.getStringExtra(EXTRA_MERCADO));
+        editPreco.setText(String.format(Locale.forLanguageTag("pt-BR"),
+                "%.2f", intent.getDoubleExtra(EXTRA_PRECO, 0)));
+
+        selecionarCategoria(intent.getStringExtra(EXTRA_CATEGORIA));
+        selecionarUnidade(intent.getStringExtra(EXTRA_UNIDADE));
+    }
+
+    /**
+     * Seleciona no Spinner a categoria informada (procura pelo texto no array).
+     */
+    private void selecionarCategoria(String categoria) {
+        if (categoria == null) {
+            return;
+        }
+        String[] categorias = getResources().getStringArray(R.array.categorias);
+        for (int i = 0; i < categorias.length; i++) {
+            if (categorias[i].equals(categoria)) {
+                spinnerCategoria.setSelection(i);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Marca no RadioGroup de unidade o RadioButton cujo texto corresponde.
+     */
+    private void selecionarUnidade(String unidade) {
+        if (unidade == null) {
+            return;
+        }
+        for (int i = 0; i < grupoUnidade.getChildCount(); i++) {
+            View filho = grupoUnidade.getChildAt(i);
+            if (filho instanceof RadioButton
+                    && ((RadioButton) filho).getText().toString().equals(unidade)) {
+                ((RadioButton) filho).setChecked(true);
+                return;
+            }
+        }
     }
 
     /**
@@ -169,17 +248,8 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
         });
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.botaoSalvar) {
-            salvar();
-        } else if (view.getId() == R.id.botaoLimpar) {
-            limpar();
-        }
-    }
-
     // ------------------------------------------------------------------
-    // Botão "Salvar"
+    // Ação "Salvar"
     // ------------------------------------------------------------------
 
     /**
@@ -192,10 +262,8 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
         String marca = editMarca.getText().toString().trim();
         String mercado = editMercado.getText().toString().trim();
         String precoDigitado = editPreco.getText().toString().trim();
-        String quantidadeDigitada = editQuantidade.getText().toString().trim();
-        String observacoes = editObservacoes.getText().toString().trim();
 
-        // --- Validação dos campos de texto ---
+        // --- Validação dos campos que compõem a entidade Produto ---
         if (produto.isEmpty()) {
             avisarErro(R.string.erro_produto, editProduto);
             return;
@@ -217,19 +285,6 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
             avisarErro(R.string.erro_preco_invalido, editPreco);
             return;
         }
-        if (quantidadeDigitada.isEmpty()) {
-            avisarErro(R.string.erro_quantidade, editQuantidade);
-            return;
-        }
-        double quantidade = converterParaNumero(quantidadeDigitada);
-        if (quantidade <= 0) {
-            avisarErro(R.string.erro_quantidade_invalida, editQuantidade);
-            return;
-        }
-        if (observacoes.isEmpty()) {
-            avisarErro(R.string.erro_observacoes, editObservacoes);
-            return;
-        }
 
         // --- Validação do Spinner ---
         if (spinnerCategoria.getSelectedItemPosition() == POSICAO_CATEGORIA_VAZIA) {
@@ -238,19 +293,15 @@ public class CadastroPrecoActivity extends AppCompatActivity implements View.OnC
         }
         String categoria = spinnerCategoria.getSelectedItem().toString();
 
-        // --- Validação dos RadioGroup ---
+        // --- Validação do RadioGroup de unidade ---
         if (grupoUnidade.getCheckedRadioButtonId() == -1) {
             avisarErro(R.string.erro_unidade, grupoUnidade);
             return;
         }
-        if (grupoPagamento.getCheckedRadioButtonId() == -1) {
-            avisarErro(R.string.erro_pagamento, grupoPagamento);
-            return;
-        }
         String unidade = lerRadioSelecionado(grupoUnidade);
-        // Os demais campos (pagamento, quantidade, opções, observações) são
-        // validados acima, mas não fazem parte da entidade Produto exibida na
-        // lista, por isso não são devolvidos.
+        // Os campos quantidade, forma de pagamento, opções e observações
+        // continuam no formulário, mas são opcionais: não fazem parte da
+        // entidade Produto exibida (e persistida) na lista.
 
         // --- Formulário válido: devolve os dados à tela de Listagem ---
         Intent resultado = new Intent();

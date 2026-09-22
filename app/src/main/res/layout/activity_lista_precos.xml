@@ -21,32 +21,8 @@
         app:subtitleTextColor="@color/verde_200"
         app:titleTextColor="@color/branco" />
 
-    <!-- ===================== Botões Adicionar / Sobre ===================== -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp">
-
-        <Button
-            android:id="@+id/botaoAdicionar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/bt_adicionar" />
-
-        <Button
-            android:id="@+id/botaoSobre"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:text="@string/bt_sobre" />
-    </LinearLayout>
-
-    <!-- ===================== Lista (com empty view) ===================== -->
+    <!-- ===================== Lista (com empty view) =====================
+         As ações Adicionar/Sobre agora ficam no menu de opções (Entrega 4). -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

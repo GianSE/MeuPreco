@@ -15,6 +15,22 @@
 
         <!-- Impede que o Android 10+ escureca a tela automaticamente. -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <!-- Menu de Ação Contextual (CAB) verde com conteúdo branco. -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">@color/verde_500</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_clear</item>
+        <item name="actionModeStyle">@style/ActionModeVerde</item>
+    </style>
+
+    <!-- Estilo do CAB: fundo verde e título em branco. -->
+    <style name="ActionModeVerde" parent="Widget.AppCompat.ActionMode">
+        <item name="background">@color/verde_500</item>
+        <item name="titleTextStyle">@style/ActionModeTitulo</item>
+    </style>
+
+    <style name="ActionModeTitulo" parent="TextAppearance.AppCompat.Widget.ActionMode.Title">
+        <item name="android:textColor">@color/branco</item>
     </style>
 
 </resources>

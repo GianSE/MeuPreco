@@ -83,4 +83,15 @@
     <string name="autoria_utfpr_nome">Universidade Tecnológica Federal do Paraná</string>
     <string name="autoria_disciplina">Disciplina: Programação para Dispositivos Móveis</string>
     <string name="autoria_credito">Ícone do aplicativo por Freepik — Flaticon (flaticon.com)</string>
+
+    <!-- Entrega 4 - menus e ação contextual -->
+    <string name="menu_adicionar">Adicionar</string>
+    <string name="menu_sobre">Sobre</string>
+    <string name="menu_editar">Editar</string>
+    <string name="menu_excluir">Excluir</string>
+    <string name="menu_salvar">Salvar</string>
+    <string name="menu_limpar">Limpar</string>
+    <string name="titulo_cadastro_editar">Editar registro</string>
+    <string name="produto_editado">%1$s atualizado!</string>
+    <string name="produto_excluido">%1$s removido da lista!</string>
 </resources>

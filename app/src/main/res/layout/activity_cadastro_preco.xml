@@ -251,29 +251,7 @@
             android:inputType="textMultiLine|textCapSentences"
             android:lines="3" />
 
-        <!-- ===================== Botoes ===================== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/botaoSalvar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/bt_salvar" />
-
-            <Button
-                android:id="@+id/botaoLimpar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:text="@string/bt_limpar" />
-        </LinearLayout>
+        <!-- As ações Salvar/Limpar agora ficam no menu de opções (Entrega 4). -->
 
     </LinearLayout>
     </ScrollView>
