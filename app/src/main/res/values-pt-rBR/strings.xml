@@ -65,6 +65,8 @@
     <string name="titulo_lista">Meu Preço</string>
     <string name="subtitulo_lista">Preços registrados nos mercados</string>
     <string name="item_clicado">Selecionado: %1$s (%2$s) — R$ %3$s</string>
+    <!-- Preço exibido em cada linha da lista; %1$s é o valor já formatado. -->
+    <string name="formato_preco">R$ %1$s</string>
 
     <!-- Listagem, cadastro e autoria -->
     <string name="bt_adicionar">Adicionar</string>
@@ -99,10 +101,6 @@
     <!-- Entrega 5 - configurações e internacionalização -->
     <string name="menu_configuracoes">Configurações</string>
     <string name="titulo_configuracoes">Configurações</string>
-    <string name="config_idioma">Idioma</string>
-    <string name="idioma_sistema">Padrão do sistema</string>
-    <string name="idioma_ingles">Inglês</string>
-    <string name="idioma_portugues">Português (Brasil)</string>
     <string name="config_ordenacao">Ordenar lista por</string>
     <string name="ordenacao_nome">Nome</string>
     <string name="ordenacao_preco">Preço</string>

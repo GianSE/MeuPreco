@@ -9,4 +9,6 @@
     <color name="cinza_texto">#FF424242</color>
     <color name="ic_launcher_background">#FFFFFFFF</color>
     <color name="cinza_divisor">#FFE0E0E0</color>
+    <!-- Destaque do item selecionado no Menu de Ação Contextual. -->
+    <color name="verde_selecionado">#FFC8E6C9</color>
 </resources>

@@ -65,6 +65,8 @@
     <string name="titulo_lista">Meu Preço</string>
     <string name="subtitulo_lista">Prices recorded at markets</string>
     <string name="item_clicado">Selected: %1$s (%2$s) — $ %3$s</string>
+    <!-- Price shown in each list row; %1$s is the value already formatted. -->
+    <string name="formato_preco">$ %1$s</string>
 
     <!-- Listing, form and about -->
     <string name="bt_adicionar">Add</string>
@@ -99,10 +101,6 @@
     <!-- Entrega 5 - settings and internationalization -->
     <string name="menu_configuracoes">Settings</string>
     <string name="titulo_configuracoes">Settings</string>
-    <string name="config_idioma">Language</string>
-    <string name="idioma_sistema">System default</string>
-    <string name="idioma_ingles">English</string>
-    <string name="idioma_portugues">Portuguese (Brazil)</string>
     <string name="config_ordenacao">Sort list by</string>
     <string name="ordenacao_nome">Name</string>
     <string name="ordenacao_preco">Price</string>

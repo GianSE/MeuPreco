@@ -32,41 +32,8 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- ===================== Idioma ===================== -->
-            <TextView
-                style="@style/RotuloCampo"
-                android:text="@string/config_idioma" />
-
-            <RadioGroup
-                android:id="@+id/grupoIdioma"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/radioIdiomaSistema"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/idioma_sistema" />
-
-                <RadioButton
-                    android:id="@+id/radioIdiomaIngles"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/idioma_ingles" />
-
-                <RadioButton
-                    android:id="@+id/radioIdiomaPortugues"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/idioma_portugues" />
-            </RadioGroup>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/cinza_divisor" />
+            <!-- O idioma não é uma configuração do app: o Android escolhe
+                 values/ ou values-pt-rBR/ conforme o idioma do sistema. -->
 
             <!-- ===================== Ordenação ===================== -->
             <TextView

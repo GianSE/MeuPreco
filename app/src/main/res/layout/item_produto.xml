@@ -2,10 +2,12 @@
 <!--
     Layout de uma linha da ListView (usado pelo ProdutoAdapter).
     Mostra: icone do app, nome/marca/mercado a esquerda e o preco a direita.
+    O fundo destaca a linha selecionada no Menu de Acao Contextual.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/fundo_item_lista"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="12dp">

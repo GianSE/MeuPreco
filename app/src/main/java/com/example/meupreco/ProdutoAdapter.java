@@ -56,11 +56,13 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> {
     }
 
     /**
-     * Formata o preço no padrão brasileiro, ex.: "R$ 27,90 / Pacote".
+     * Formata o preço no idioma do sistema, ex.: "R$ 27,90" (português) ou
+     * "$ 27.90" (inglês). O símbolo vem de R.string.formato_preco, traduzido
+     * em values/ e values-pt-rBR/.
      */
     private String formatarPreco(double preco, String unidade) {
-        return String.format(Locale.forLanguageTag("pt-BR"), "R$ %.2f", preco)
-                + "\n" + unidade;
+        String valor = String.format(Locale.getDefault(), "%.2f", preco);
+        return getContext().getString(R.string.formato_preco, valor) + "\n" + unidade;
     }
 
     /**

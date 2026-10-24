@@ -177,7 +177,7 @@ public class CadastroPrecoActivity extends AppCompatActivity {
         editProduto.setText(intent.getStringExtra(EXTRA_NOME));
         editMarca.setText(intent.getStringExtra(EXTRA_MARCA));
         editMercado.setText(intent.getStringExtra(EXTRA_MERCADO));
-        editPreco.setText(String.format(Locale.forLanguageTag("pt-BR"),
+        editPreco.setText(String.format(Locale.getDefault(),
                 "%.2f", intent.getDoubleExtra(EXTRA_PRECO, 0)));
 
         selecionarCategoria(intent.getStringExtra(EXTRA_CATEGORIA));

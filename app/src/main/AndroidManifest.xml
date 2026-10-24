@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".MeuPrecoApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,24 +23,28 @@
         </activity>
 
         <!-- Activity de Cadastro (formulário da Entrega 1). Aberta pela lista
-             através do botão "Adicionar", esperando um resultado. -->
+             através do botão "Adicionar", esperando um resultado.
+             parentActivityName declara a Lista como tela pai (botão Up). -->
         <activity
             android:name=".CadastroPrecoActivity"
             android:exported="false"
             android:label="@string/titulo_activity_cadastro"
+            android:parentActivityName=".ListaPrecosActivity"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- Activity de Autoria (Entrega 3). Aberta pela lista pelo botão "Sobre". -->
         <activity
             android:name=".AutoriaActivity"
             android:exported="false"
-            android:label="@string/titulo_autoria" />
+            android:label="@string/titulo_autoria"
+            android:parentActivityName=".ListaPrecosActivity" />
 
         <!-- Activity de Configurações (Entrega 5). Aberta pelo menu da lista. -->
         <activity
             android:name=".ConfiguracoesActivity"
             android:exported="false"
-            android:label="@string/titulo_configuracoes" />
+            android:label="@string/titulo_configuracoes"
+            android:parentActivityName=".ListaPrecosActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Fundo de cada linha da lista (item_produto.xml). Quando a ListView marca o
+    item com setItemChecked (ao abrir o Menu de Ação Contextual), a linha fica
+    no estado "activated" e recebe o fundo verde claro de destaque.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/verde_selecionado" android:state_activated="true" />
+    <item android:drawable="@android:color/transparent" />
+</selector>

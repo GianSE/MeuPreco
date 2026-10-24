@@ -74,17 +74,17 @@ topo (barra de status / recorte da câmera) é aplicado à Toolbar via
 
 - `values/strings.xml` (e `values/arrays.xml`) em **Inglês** — idioma padrão.
 - `values-pt-rBR/strings.xml` (e `arrays.xml`) em **Português do Brasil**.
-- Todos os textos fixos (telas, menus e Toasts) têm as duas traduções.
-- Um seletor de idioma (Sistema / English / Português) aplica o idioma em tempo
-  de execução com `AppCompatDelegate.setApplicationLocales`.
+- Todos os textos fixos (telas, menus e Toasts) têm as duas traduções,
+  inclusive o símbolo da moeda (`formato_preco`).
+- O idioma é **automático**: o Android escolhe a pasta de recursos conforme o
+  idioma configurado no sistema do aparelho (não há seletor dentro do app). O
+  número do preço é formatado com `Locale.getDefault()`.
 
 ## Configurações com SharedPreferences (Entrega 5)
 
 A classe **`Preferencias`** encapsula o `SharedPreferences` e a
 **`ConfiguracoesActivity`** permite:
 
-- **Idioma** — Sistema / Inglês / Português (persistido e reaplicado no início
-  pela classe `MeuPrecoApp`).
 - **Ordenação da lista** — por Nome ou por Preço.
 - **Sugerir último mercado** — quando ligado, o campo Mercado do cadastro já vem
   preenchido com o último mercado usado.
@@ -99,8 +99,8 @@ Nenhum login/senha é salvo — apenas preferências de interface.
   `ProdutoAdapter` customizado e clique com Toast.
 - **Entrega 3** — tela de Autoria, Barra do Aplicativo, e a lista passa a exibir
   os produtos cadastrados via `startActivityForResult` / `onActivityResult`.
-- **Entrega 4** — menus de opções, Menu de Ação Contextual (Editar/Excluir),
-  edição de itens e botões Up.
+- **Entrega 4** — menus de opções, Menu de Ação Contextual (Editar/Excluir) com
+  o item selecionado destacado, edição de itens e botões Up.
 - **Entrega 5** — internacionalização (EN/PT) e configurações persistidas com
   SharedPreferences.
 

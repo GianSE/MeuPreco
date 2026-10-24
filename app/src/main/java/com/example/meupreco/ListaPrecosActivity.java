@@ -82,31 +82,53 @@ public class ListaPrecosActivity extends AppCompatActivity {
         listaProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (actionMode != null) {
+                    // Com o CAB aberto, o toque troca o item selecionado (destacado).
+                    selecionarItem(position);
+                    return;
+                }
+                // Fora do CAB, o toque simples não deixa a linha destacada.
+                listaProdutos.setItemChecked(position, false);
+
                 Produto produto = produtos.get(position);
                 String mensagem = getString(
                         R.string.item_clicado,
                         produto.getNome(),
                         produto.getMarca(),
-                        String.format(Locale.forLanguageTag("pt-BR"), "%.2f", produto.getPreco()));
+                        String.format(Locale.getDefault(), "%.2f", produto.getPreco()));
                 Toast.makeText(ListaPrecosActivity.this, mensagem, Toast.LENGTH_LONG).show();
             }
         });
 
-        // Toque longo: abre o Menu de Ação Contextual (CAB) para o item.
+        // Toque longo: abre o Menu de Ação Contextual (CAB) para o item. O
+        // setItemChecked ativa a linha, que fica destacada pelo fundo
+        // drawable/fundo_item_lista.xml (state_activated).
         listaProdutos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (actionMode != null) {
                     return false;
                 }
-                posicaoSelecionada = position;
-                listaProdutos.setItemChecked(position, true);
                 actionMode = startSupportActionMode(callbackContextual);
+                selecionarItem(position);
                 return true;
             }
         });
 
         tratarBarrasDoSistema();
+    }
+
+    /**
+     * Marca o item como selecionado no CAB: a linha fica destacada
+     * (setItemChecked + state_activated) e o nome do produto aparece como
+     * título da barra contextual.
+     */
+    private void selecionarItem(int position) {
+        posicaoSelecionada = position;
+        listaProdutos.setItemChecked(position, true);
+        if (actionMode != null) {
+            actionMode.setTitle(produtos.get(position).getNome());
+        }
     }
 
     // ------------------------------------------------------------------

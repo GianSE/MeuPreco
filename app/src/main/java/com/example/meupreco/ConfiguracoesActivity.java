@@ -17,9 +17,11 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 /**
  * Meu Preço - Entrega 5.
  *
- * Tela de Configurações. As escolhas do usuário (idioma, ordenação da lista e
- * sugestão de preenchimento) são gravadas no SharedPreferences (Preferencias).
- * A troca de idioma é aplicada na hora com AppCompatDelegate (per-app language).
+ * Tela de Configurações. As escolhas do usuário (ordenação da lista e sugestão
+ * de preenchimento) são gravadas no SharedPreferences (Preferencias).
+ *
+ * O idioma não é configurado aqui: o Android aplica automaticamente os textos
+ * de values/ (inglês) ou values-pt-rBR/ (português) conforme o idioma do sistema.
  */
 public class ConfiguracoesActivity extends AppCompatActivity {
 
@@ -27,7 +29,6 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private View conteudo;
-    private RadioGroup grupoIdioma;
     private RadioGroup grupoOrdenacao;
     private SwitchMaterial switchSugerir;
 
@@ -44,7 +45,6 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         conteudo = findViewById(R.id.conteudo);
-        grupoIdioma = findViewById(R.id.grupoIdioma);
         grupoOrdenacao = findViewById(R.id.grupoOrdenacao);
         switchSugerir = findViewById(R.id.switchSugerir);
 
@@ -64,18 +64,6 @@ public class ConfiguracoesActivity extends AppCompatActivity {
      * (Feito ANTES de registrar os listeners para não disparar gravações.)
      */
     private void carregarEstadoAtual() {
-        switch (prefs.getIdioma()) {
-            case Preferencias.IDIOMA_INGLES:
-                grupoIdioma.check(R.id.radioIdiomaIngles);
-                break;
-            case Preferencias.IDIOMA_PORTUGUES:
-                grupoIdioma.check(R.id.radioIdiomaPortugues);
-                break;
-            default:
-                grupoIdioma.check(R.id.radioIdiomaSistema);
-                break;
-        }
-
         if (Preferencias.ORDENACAO_PRECO.equals(prefs.getOrdenacao())) {
             grupoOrdenacao.check(R.id.radioOrdenacaoPreco);
         } else {
@@ -86,23 +74,6 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     }
 
     private void configurarListeners() {
-        grupoIdioma.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                String idioma;
-                if (checkedId == R.id.radioIdiomaIngles) {
-                    idioma = Preferencias.IDIOMA_INGLES;
-                } else if (checkedId == R.id.radioIdiomaPortugues) {
-                    idioma = Preferencias.IDIOMA_PORTUGUES;
-                } else {
-                    idioma = Preferencias.IDIOMA_SISTEMA;
-                }
-                prefs.setIdioma(idioma);
-                // Aplica na hora; o sistema recria as Activities no novo idioma.
-                MeuPrecoApp.aplicarIdioma(idioma);
-            }
-        });
-
         grupoOrdenacao.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -128,13 +99,11 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     }
 
     /**
-     * Restaura as configurações padrão, atualiza os controles e volta o idioma
-     * para o padrão do sistema.
+     * Restaura as configurações padrão e atualiza os controles.
      */
     private void restaurarPadroes() {
         prefs.restaurarPadroes();
         carregarEstadoAtual();
-        MeuPrecoApp.aplicarIdioma(Preferencias.IDIOMA_SISTEMA);
         Toast.makeText(this, R.string.msg_padroes_restaurados, Toast.LENGTH_SHORT).show();
     }
 

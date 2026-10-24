@@ -7,21 +7,16 @@ import android.content.SharedPreferences;
  * Meu Preço - Entrega 5.
  *
  * Encapsula o acesso ao SharedPreferences do aplicativo, guardando as
- * configurações escolhidas pelo usuário (idioma, ordenação da lista, sugestão
- * de preenchimento e o último mercado usado).
+ * configurações escolhidas pelo usuário (ordenação da lista, sugestão de
+ * preenchimento e o último mercado usado).
  */
 public class Preferencias {
 
     private static final String ARQUIVO = "meupreco_prefs";
 
-    public static final String KEY_IDIOMA = "idioma";              // "", "en" ou "pt-BR"
     public static final String KEY_ORDENACAO = "ordenacao";        // "nome" ou "preco"
     public static final String KEY_SUGERIR = "sugerir_mercado";    // boolean
     public static final String KEY_ULTIMO_MERCADO = "ultimo_mercado";
-
-    public static final String IDIOMA_SISTEMA = "";
-    public static final String IDIOMA_INGLES = "en";
-    public static final String IDIOMA_PORTUGUES = "pt-BR";
 
     public static final String ORDENACAO_NOME = "nome";
     public static final String ORDENACAO_PRECO = "preco";
@@ -31,15 +26,6 @@ public class Preferencias {
     public Preferencias(Context contexto) {
         sp = contexto.getApplicationContext()
                 .getSharedPreferences(ARQUIVO, Context.MODE_PRIVATE);
-    }
-
-    // --- Idioma ---
-    public String getIdioma() {
-        return sp.getString(KEY_IDIOMA, IDIOMA_SISTEMA);
-    }
-
-    public void setIdioma(String idioma) {
-        sp.edit().putString(KEY_IDIOMA, idioma).apply();
     }
 
     // --- Ordenação da lista ---
