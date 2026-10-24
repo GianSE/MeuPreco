@@ -13,4 +13,14 @@
         <item>Pet</item>
         <item>Others</item>
     </string-array>
+
+    <!--
+        Nomes das unidades na ordem dos códigos Produto.UNIDADE_* (0, 1, 2).
+        Os itens apontam para @string, então já saem traduzidos em cada idioma.
+    -->
+    <string-array name="unidades">
+        <item>@string/rb_unidade</item>
+        <item>@string/rb_quilo</item>
+        <item>@string/rb_litro</item>
+    </string-array>
 </resources>

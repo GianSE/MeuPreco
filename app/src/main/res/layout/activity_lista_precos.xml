@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Tela principal (Launcher) - Entrega 3.
-    Barra do Aplicativo (Toolbar) no topo; abaixo os botões Adicionar/Sobre;
-    e a ListView (com empty view) ocupando o restante da tela.
-    A lista agora e preenchida pelos cadastros feitos na tela de Cadastro.
+    Tela principal (Launcher).
+    Barra do Aplicativo (Toolbar) no topo e a ListView (com empty view)
+    ocupando o restante da tela. A lista e preenchida com os precos gravados
+    no banco de dados (Room).
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,7 +22,7 @@
         app:titleTextColor="@color/branco" />
 
     <!-- ===================== Lista (com empty view) =====================
-         As ações Adicionar/Sobre agora ficam no menu de opções (Entrega 4). -->
+         As ações ficam no menu de opções, com ícones na barra. -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

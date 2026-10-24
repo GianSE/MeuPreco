@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeuPreco">
 
-        <!-- Activity principal (Launcher) da Entrega 2: listagem de produtos. -->
+        <!-- Activity principal (Launcher): lista de preços gravados no banco. -->
         <activity
             android:name=".ListaPrecosActivity"
             android:exported="true"
@@ -22,8 +22,8 @@
             </intent-filter>
         </activity>
 
-        <!-- Activity de Cadastro (formulário da Entrega 1). Aberta pela lista
-             através do botão "Adicionar", esperando um resultado.
+        <!-- Cadastro/edição de preço (entidade Produto). Aberta pela lista
+             esperando um resultado.
              parentActivityName declara a Lista como tela pai (botão Up). -->
         <activity
             android:name=".CadastroPrecoActivity"
@@ -45,6 +45,21 @@
             android:exported="false"
             android:label="@string/titulo_configuracoes"
             android:parentActivityName=".ListaPrecosActivity" />
+
+        <!-- Lista de mercados (Entrega Final). Aberta pelo menu da lista de preços. -->
+        <activity
+            android:name=".ListaMercadosActivity"
+            android:exported="false"
+            android:label="@string/titulo_mercados"
+            android:parentActivityName=".ListaPrecosActivity" />
+
+        <!-- Cadastro/edição de mercado (entidade Mercado). Tela pai: lista de mercados. -->
+        <activity
+            android:name=".CadastroMercadoActivity"
+            android:exported="false"
+            android:label="@string/titulo_cadastro_mercado"
+            android:parentActivityName=".ListaMercadosActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

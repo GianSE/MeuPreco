@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Tela de cadastro de um registro de preco.
+    Tela de cadastro/edição de um registro de preço (tabela produtos).
     A raiz e um LinearLayout vertical: em cima fica a faixa verde (barra de
     titulo do app) e embaixo o ScrollView com o formulario, que pode ser
     rolado em telas pequenas (testado no perfil Nexus 4).
@@ -77,18 +77,32 @@
             android:inputType="textCapWords"
             android:maxLines="1" />
 
-        <!-- ===================== Mercado ===================== -->
+        <!-- ===================== Mercado (chave estrangeira) =====================
+             Spinner preenchido com os mercados cadastrados no banco (Room). -->
         <TextView
             style="@style/RotuloCampo"
             android:text="@string/label_mercado" />
 
-        <EditText
-            android:id="@+id/editMercado"
-            style="@style/CampoTexto"
-            android:hint="@string/hint_mercado"
-            android:importantForAutofill="no"
-            android:inputType="textCapWords"
-            android:maxLines="1" />
+        <Spinner
+            android:id="@+id/spinnerMercado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" />
+
+        <!-- ===================== Data da compra (LocalDate) =====================
+             DatePicker no modo "spinner" (rodinhas de dia/mês/ano), sem o
+             calendário, para caber no formulário. -->
+        <TextView
+            style="@style/RotuloCampo"
+            android:text="@string/label_data_compra" />
+
+        <DatePicker
+            android:id="@+id/datePickerCompra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
 
         <!-- ===================== Preco e quantidade ===================== -->
         <LinearLayout

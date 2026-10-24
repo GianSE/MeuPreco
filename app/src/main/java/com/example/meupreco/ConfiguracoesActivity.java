@@ -64,8 +64,11 @@ public class ConfiguracoesActivity extends AppCompatActivity {
      * (Feito ANTES de registrar os listeners para não disparar gravações.)
      */
     private void carregarEstadoAtual() {
-        if (Preferencias.ORDENACAO_PRECO.equals(prefs.getOrdenacao())) {
+        String ordenacao = prefs.getOrdenacao();
+        if (Preferencias.ORDENACAO_PRECO.equals(ordenacao)) {
             grupoOrdenacao.check(R.id.radioOrdenacaoPreco);
+        } else if (Preferencias.ORDENACAO_DATA.equals(ordenacao)) {
+            grupoOrdenacao.check(R.id.radioOrdenacaoData);
         } else {
             grupoOrdenacao.check(R.id.radioOrdenacaoNome);
         }
@@ -77,9 +80,13 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         grupoOrdenacao.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                prefs.setOrdenacao(checkedId == R.id.radioOrdenacaoPreco
-                        ? Preferencias.ORDENACAO_PRECO
-                        : Preferencias.ORDENACAO_NOME);
+                if (checkedId == R.id.radioOrdenacaoPreco) {
+                    prefs.setOrdenacao(Preferencias.ORDENACAO_PRECO);
+                } else if (checkedId == R.id.radioOrdenacaoData) {
+                    prefs.setOrdenacao(Preferencias.ORDENACAO_DATA);
+                } else {
+                    prefs.setOrdenacao(Preferencias.ORDENACAO_NOME);
+                }
             }
         });
 

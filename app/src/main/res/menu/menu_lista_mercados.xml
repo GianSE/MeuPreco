@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menu de opções da lista de mercados (Entrega Final). -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/acao_adicionar"
+        android:icon="@drawable/ic_add"
+        android:title="@string/menu_adicionar_mercado"
+        app:showAsAction="ifRoom" />
+</menu>

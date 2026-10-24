@@ -4,22 +4,26 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Meu Preço - Entrega 5.
+ * Meu Preço - Entregas 5 e Final.
  *
  * Encapsula o acesso ao SharedPreferences do aplicativo, guardando as
- * configurações escolhidas pelo usuário (ordenação da lista, sugestão de
- * preenchimento e o último mercado usado).
+ * configurações escolhidas pelo usuário (ordenação da lista de preços e
+ * sugestão do último mercado usado no cadastro).
  */
 public class Preferencias {
 
     private static final String ARQUIVO = "meupreco_prefs";
 
-    public static final String KEY_ORDENACAO = "ordenacao";        // "nome" ou "preco"
-    public static final String KEY_SUGERIR = "sugerir_mercado";    // boolean
-    public static final String KEY_ULTIMO_MERCADO = "ultimo_mercado";
+    public static final String KEY_ORDENACAO = "ordenacao";            // "nome", "preco" ou "data"
+    public static final String KEY_SUGERIR = "sugerir_mercado";        // boolean
+    public static final String KEY_ULTIMO_MERCADO = "ultimo_mercado_id"; // long
 
     public static final String ORDENACAO_NOME = "nome";
     public static final String ORDENACAO_PRECO = "preco";
+    public static final String ORDENACAO_DATA = "data";
+
+    /** Valor usado quando ainda não há último mercado salvo. */
+    public static final long SEM_MERCADO = -1;
 
     private final SharedPreferences sp;
 
@@ -46,13 +50,13 @@ public class Preferencias {
         sp.edit().putBoolean(KEY_SUGERIR, sugerir).apply();
     }
 
-    // --- Último mercado digitado (usado pela sugestão) ---
-    public String getUltimoMercado() {
-        return sp.getString(KEY_ULTIMO_MERCADO, "");
+    // --- Último mercado escolhido no cadastro (usado pela sugestão) ---
+    public long getUltimoMercadoId() {
+        return sp.getLong(KEY_ULTIMO_MERCADO, SEM_MERCADO);
     }
 
-    public void setUltimoMercado(String mercado) {
-        sp.edit().putString(KEY_ULTIMO_MERCADO, mercado).apply();
+    public void setUltimoMercadoId(long mercadoId) {
+        sp.edit().putLong(KEY_ULTIMO_MERCADO, mercadoId).apply();
     }
 
     /**

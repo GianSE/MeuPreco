@@ -57,6 +57,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/ordenacao_preco" />
+
+                <RadioButton
+                    android:id="@+id/radioOrdenacaoData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ordenacao_data" />
             </RadioGroup>
 
             <View

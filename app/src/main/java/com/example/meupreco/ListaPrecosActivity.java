@@ -1,5 +1,6 @@
 package com.example.meupreco;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
@@ -18,39 +20,41 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.meupreco.modelo.Produto;
+import com.example.meupreco.modelo.ProdutoComMercado;
+import com.example.meupreco.persistencia.MeuPrecoDatabase;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Locale;
+import java.util.List;
 
 /**
- * Meu Preço - Entrega 4.
+ * Meu Preço - Entrega Final.
  *
- * Activity principal (Launcher). Exibe em uma ListView os produtos cadastrados
- * pelo usuário. As ações ficam em menus:
+ * Activity principal (Launcher). Exibe em uma ListView os preços gravados no
+ * banco de dados (Room), junto com o nome do mercado (chave estrangeira).
  *
- * - Menu de opções (barra do app): "Adicionar" (abre o Cadastro esperando
- *   resultado) e "Sobre" (abre a Autoria).
+ * - Menu de opções (ícones na barra): Adicionar, Mercados, Configurações e Sobre.
  * - Menu de Ação Contextual (CAB), aberto ao manter um item pressionado:
- *   "Editar" (abre o Cadastro em modo edição com os dados do item) e "Excluir"
- *   (remove o item do ArrayList).
+ *   Editar (abre o Cadastro em modo edição) e Excluir (pede confirmação em um
+ *   AlertDialog antes de apagar do banco).
  */
 public class ListaPrecosActivity extends AppCompatActivity {
 
-    // Códigos para diferenciar o retorno do Cadastro (novo x edição).
+    // Códigos para diferenciar o retorno das telas abertas com resultado.
     private static final int REQUISICAO_ADICIONAR = 1;
     private static final int REQUISICAO_EDITAR = 2;
+    private static final int REQUISICAO_PRIMEIRO_MERCADO = 3;
 
-    private final ArrayList<Produto> produtos = new ArrayList<>();
+    private final ArrayList<ProdutoComMercado> produtos = new ArrayList<>();
     private ProdutoAdapter adapter;
     private Preferencias prefs;
+    private MeuPrecoDatabase banco;
 
     private Toolbar toolbar;
     private ListView listaProdutos;
 
-    // Posição do item alvo do CAB e do item em edição.
+    // Posição do item alvo do CAB.
     private int posicaoSelecionada = -1;
-    private int posicaoEditando = -1;
     private ActionMode actionMode;
 
     @Override
@@ -63,6 +67,7 @@ public class ListaPrecosActivity extends AppCompatActivity {
         controlador.setAppearanceLightStatusBars(false);
 
         prefs = new Preferencias(this);
+        banco = MeuPrecoDatabase.getInstance(this);
 
         toolbar = findViewById(R.id.toolbar);
         listaProdutos = findViewById(R.id.listaProdutos);
@@ -90,12 +95,12 @@ public class ListaPrecosActivity extends AppCompatActivity {
                 // Fora do CAB, o toque simples não deixa a linha destacada.
                 listaProdutos.setItemChecked(position, false);
 
-                Produto produto = produtos.get(position);
+                Produto produto = produtos.get(position).produto;
                 String mensagem = getString(
                         R.string.item_clicado,
                         produto.getNome(),
                         produto.getMarca(),
-                        String.format(Locale.getDefault(), "%.2f", produto.getPreco()));
+                        Formatacao.preco(ListaPrecosActivity.this, produto.getPreco()));
                 Toast.makeText(ListaPrecosActivity.this, mensagem, Toast.LENGTH_LONG).show();
             }
         });
@@ -119,6 +124,36 @@ public class ListaPrecosActivity extends AppCompatActivity {
     }
 
     /**
+     * Toda vez que a lista volta à tela (depois de cadastrar, editar, mudar as
+     * configurações...), os dados são lidos de novo do banco.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregarProdutos();
+    }
+
+    /**
+     * Consulta o banco com a ordenação escolhida nas Configurações
+     * (SharedPreferences) e atualiza a ListView.
+     */
+    private void carregarProdutos() {
+        List<ProdutoComMercado> resultado;
+        String ordenacao = prefs.getOrdenacao();
+        if (Preferencias.ORDENACAO_PRECO.equals(ordenacao)) {
+            resultado = banco.produtoDao().listarPorPreco();
+        } else if (Preferencias.ORDENACAO_DATA.equals(ordenacao)) {
+            resultado = banco.produtoDao().listarPorData();
+        } else {
+            resultado = banco.produtoDao().listarPorNome();
+        }
+
+        produtos.clear();
+        produtos.addAll(resultado);
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
      * Marca o item como selecionado no CAB: a linha fica destacada
      * (setItemChecked + state_activated) e o nome do produto aparece como
      * título da barra contextual.
@@ -127,7 +162,7 @@ public class ListaPrecosActivity extends AppCompatActivity {
         posicaoSelecionada = position;
         listaProdutos.setItemChecked(position, true);
         if (actionMode != null) {
-            actionMode.setTitle(produtos.get(position).getNome());
+            actionMode.setTitle(produtos.get(position).produto.getNome());
         }
     }
 
@@ -145,8 +180,10 @@ public class ListaPrecosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.acao_adicionar) {
-            Intent intent = new Intent(this, CadastroPrecoActivity.class);
-            startActivityForResult(intent, REQUISICAO_ADICIONAR);
+            adicionarProduto();
+            return true;
+        } else if (id == R.id.acao_mercados) {
+            startActivity(new Intent(this, ListaMercadosActivity.class));
             return true;
         } else if (id == R.id.acao_configuracoes) {
             startActivity(new Intent(this, ConfiguracoesActivity.class));
@@ -159,36 +196,28 @@ public class ListaPrecosActivity extends AppCompatActivity {
     }
 
     /**
-     * Ao voltar para a lista (inclusive vindo das Configurações), aplica a
-     * ordenação escolhida pelo usuário e salva no SharedPreferences.
+     * Abre o Cadastro de preço. Como todo preço precisa de um mercado (chave
+     * estrangeira), se ainda não houver mercados um AlertDialog avisa o usuário
+     * e oferece abrir o cadastro de mercado.
      */
-    @Override
-    protected void onResume() {
-        super.onResume();
-        aplicarOrdenacao();
-    }
-
-    /**
-     * Ordena o ArrayList por nome ou por preço, conforme a preferência, e
-     * atualiza a ListView.
-     */
-    private void aplicarOrdenacao() {
-        if (Preferencias.ORDENACAO_PRECO.equals(prefs.getOrdenacao())) {
-            Collections.sort(produtos, new Comparator<Produto>() {
-                @Override
-                public int compare(Produto a, Produto b) {
-                    return Double.compare(a.getPreco(), b.getPreco());
-                }
-            });
-        } else {
-            Collections.sort(produtos, new Comparator<Produto>() {
-                @Override
-                public int compare(Produto a, Produto b) {
-                    return a.getNome().compareToIgnoreCase(b.getNome());
-                }
-            });
+    private void adicionarProduto() {
+        if (banco.mercadoDao().contar() == 0) {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.dialogo_sem_mercado_titulo)
+                    .setMessage(R.string.dialogo_sem_mercado)
+                    .setPositiveButton(R.string.bt_cadastrar_mercado, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(ListaPrecosActivity.this,
+                                    CadastroMercadoActivity.class);
+                            startActivityForResult(intent, REQUISICAO_PRIMEIRO_MERCADO);
+                        }
+                    })
+                    .setNegativeButton(R.string.bt_cancelar, null)
+                    .show();
+            return;
         }
-        adapter.notifyDataSetChanged();
+        startActivityForResult(new Intent(this, CadastroPrecoActivity.class), REQUISICAO_ADICIONAR);
     }
 
     // ------------------------------------------------------------------
@@ -215,8 +244,9 @@ public class ListaPrecosActivity extends AppCompatActivity {
                 mode.finish();
                 return true;
             } else if (id == R.id.acao_excluir) {
-                excluirProduto(posicaoSelecionada);
-                mode.finish();
+                // O CAB continua aberto (item destacado) enquanto o usuário
+                // decide no AlertDialog.
+                confirmarExclusao(posicaoSelecionada);
                 return true;
             }
             return false;
@@ -233,36 +263,46 @@ public class ListaPrecosActivity extends AppCompatActivity {
     };
 
     /**
-     * Abre o Cadastro em modo edição, enviando os dados do produto selecionado
-     * e esperando o resultado (com os valores alterados) de volta.
+     * Abre o Cadastro em modo edição. Basta enviar o id: o Cadastro busca o
+     * registro completo no banco.
      */
     private void editarProduto(int posicao) {
-        Produto p = produtos.get(posicao);
-        posicaoEditando = posicao;
-
+        Produto produto = produtos.get(posicao).produto;
         Intent intent = new Intent(this, CadastroPrecoActivity.class);
-        intent.putExtra(CadastroPrecoActivity.EXTRA_NOME, p.getNome());
-        intent.putExtra(CadastroPrecoActivity.EXTRA_MARCA, p.getMarca());
-        intent.putExtra(CadastroPrecoActivity.EXTRA_MERCADO, p.getMercado());
-        intent.putExtra(CadastroPrecoActivity.EXTRA_CATEGORIA, p.getCategoria());
-        intent.putExtra(CadastroPrecoActivity.EXTRA_UNIDADE, p.getUnidade());
-        intent.putExtra(CadastroPrecoActivity.EXTRA_PRECO, p.getPreco());
+        intent.putExtra(CadastroPrecoActivity.EXTRA_ID, produto.getId());
         startActivityForResult(intent, REQUISICAO_EDITAR);
     }
 
     /**
-     * Remove o produto do ArrayList e redesenha a lista.
+     * AlertDialog de confirmação: só exclui do banco se o usuário tocar em
+     * "Excluir". Em "Cancelar" nada acontece e o item continua selecionado.
      */
-    private void excluirProduto(int posicao) {
-        Produto removido = produtos.remove(posicao);
-        adapter.notifyDataSetChanged();
-        Toast.makeText(this,
-                getString(R.string.produto_excluido, removido.getNome()),
-                Toast.LENGTH_SHORT).show();
+    private void confirmarExclusao(int posicao) {
+        final Produto produto = produtos.get(posicao).produto;
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.dialogo_excluir_titulo)
+                .setMessage(getString(R.string.dialogo_excluir_produto, produto.getNome()))
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.bt_excluir, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        banco.produtoDao().excluir(produto);
+                        if (actionMode != null) {
+                            actionMode.finish();
+                        }
+                        carregarProdutos();
+                        Toast.makeText(ListaPrecosActivity.this,
+                                getString(R.string.produto_excluido, produto.getNome()),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(R.string.bt_cancelar, null)
+                .show();
     }
 
     // ------------------------------------------------------------------
-    // Retorno do Cadastro (novo item ou edição)
+    // Retorno das telas abertas com startActivityForResult
     // ------------------------------------------------------------------
 
     @Override
@@ -270,32 +310,24 @@ public class ListaPrecosActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode != RESULT_OK || data == null) {
-            posicaoEditando = -1;
             return;
         }
-
-        Produto produto = new Produto(
-                data.getStringExtra(CadastroPrecoActivity.EXTRA_NOME),
-                data.getStringExtra(CadastroPrecoActivity.EXTRA_MARCA),
-                data.getStringExtra(CadastroPrecoActivity.EXTRA_MERCADO),
-                data.getStringExtra(CadastroPrecoActivity.EXTRA_CATEGORIA),
-                data.getStringExtra(CadastroPrecoActivity.EXTRA_UNIDADE),
-                data.getDoubleExtra(CadastroPrecoActivity.EXTRA_PRECO, 0));
+        String nome = data.getStringExtra(CadastroPrecoActivity.EXTRA_NOME);
 
         if (requestCode == REQUISICAO_ADICIONAR) {
-            produtos.add(produto);
-            adapter.notifyDataSetChanged();
-            Toast.makeText(this,
-                    getString(R.string.produto_adicionado, produto.getNome()),
+            Toast.makeText(this, getString(R.string.produto_adicionado, nome),
                     Toast.LENGTH_SHORT).show();
-        } else if (requestCode == REQUISICAO_EDITAR && posicaoEditando >= 0) {
-            produtos.set(posicaoEditando, produto);
-            adapter.notifyDataSetChanged();
-            Toast.makeText(this,
-                    getString(R.string.produto_editado, produto.getNome()),
+        } else if (requestCode == REQUISICAO_EDITAR) {
+            Toast.makeText(this, getString(R.string.produto_editado, nome),
                     Toast.LENGTH_SHORT).show();
-            posicaoEditando = -1;
+        } else if (requestCode == REQUISICAO_PRIMEIRO_MERCADO) {
+            // O primeiro mercado acabou de ser criado: segue para o cadastro do preço.
+            Toast.makeText(this, getString(R.string.mercado_adicionado, nome),
+                    Toast.LENGTH_SHORT).show();
+            startActivityForResult(new Intent(this, CadastroPrecoActivity.class),
+                    REQUISICAO_ADICIONAR);
         }
+        // A lista é recarregada do banco no onResume, que vem logo em seguida.
     }
 
     // ------------------------------------------------------------------

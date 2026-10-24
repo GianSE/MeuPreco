@@ -9,22 +9,31 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.meupreco.modelo.Produto;
+import com.example.meupreco.modelo.ProdutoComMercado;
+
 import java.util.List;
-import java.util.Locale;
 
 /**
- * Adapter customizado para exibir cada {@link Produto} em uma linha da ListView.
+ * Adapter customizado para exibir cada preço registrado (Produto + nome do
+ * Mercado) em uma linha da ListView.
  *
  * Usa o layout de item "item_produto.xml" e o padrão ViewHolder para reaproveitar
  * as views recicladas pela ListView, evitando findViewById a cada rolagem.
  */
-public class ProdutoAdapter extends ArrayAdapter<Produto> {
+public class ProdutoAdapter extends ArrayAdapter<ProdutoComMercado> {
 
     private final LayoutInflater inflater;
 
-    public ProdutoAdapter(Context context, List<Produto> produtos) {
-        super(context, 0, produtos);
+    // Textos traduzidos da categoria e da unidade (o banco guarda só o código).
+    private final String[] categorias;
+    private final String[] unidades;
+
+    public ProdutoAdapter(Context context, List<ProdutoComMercado> itens) {
+        super(context, 0, itens);
         inflater = LayoutInflater.from(context);
+        categorias = context.getResources().getStringArray(R.array.categorias);
+        unidades = context.getResources().getStringArray(R.array.unidades);
     }
 
     @NonNull
@@ -44,25 +53,24 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Produto produto = getItem(position);
-        if (produto != null) {
+        ProdutoComMercado item = getItem(position);
+        if (item != null) {
+            Produto produto = item.produto;
+            Context contexto = getContext();
             holder.textNome.setText(produto.getNome());
-            holder.textDetalhe.setText(produto.getMarca() + " • " + produto.getCategoria());
-            holder.textMercado.setText(produto.getMercado());
-            holder.textPreco.setText(formatarPreco(produto.getPreco(), produto.getUnidade()));
+            holder.textDetalhe.setText(contexto.getString(R.string.formato_item_linha,
+                    produto.getMarca(),
+                    Formatacao.itemDoArray(categorias, produto.getCategoria())));
+            // Mercado (vindo da chave estrangeira) e a data no formato do idioma.
+            holder.textMercado.setText(contexto.getString(R.string.formato_item_linha,
+                    item.nomeMercado,
+                    Formatacao.data(produto.getDataCompra())));
+            holder.textPreco.setText(contexto.getString(R.string.formato_item_preco,
+                    Formatacao.preco(contexto, produto.getPreco()),
+                    Formatacao.itemDoArray(unidades, produto.getUnidade())));
         }
 
         return convertView;
-    }
-
-    /**
-     * Formata o preço no idioma do sistema, ex.: "R$ 27,90" (português) ou
-     * "$ 27.90" (inglês). O símbolo vem de R.string.formato_preco, traduzido
-     * em values/ e values-pt-rBR/.
-     */
-    private String formatarPreco(double preco, String unidade) {
-        String valor = String.format(Locale.getDefault(), "%.2f", preco);
-        return getContext().getString(R.string.formato_preco, valor) + "\n" + unidade;
     }
 
     /**

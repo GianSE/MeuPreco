@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Default language: English (Entrega 5 - internationalization). -->
+<!-- Default language: English. Portuguese (Brazil) is in values-pt-rBR. -->
 <resources>
     <string name="app_name">Meu Preço</string>
     <string name="titulo_activity_cadastro">Meu Preço - New Record</string>
 
+    <!-- Price form -->
     <string name="cabecalho">Product Price Record</string>
-    <string name="subtitulo">Note how much you paid and where you bought it.</string>
+    <string name="subtitulo">Note how much you paid, where and when you bought it.</string>
 
     <string name="label_produto">Product name:</string>
     <string name="hint_produto">E.g.: White rice type 1 - 5 kg</string>
@@ -14,7 +15,7 @@
     <string name="hint_marca">E.g.: Tio João</string>
 
     <string name="label_mercado">Market:</string>
-    <string name="hint_mercado">E.g.: Central Supermarket</string>
+    <string name="label_data_compra">Purchase date:</string>
 
     <string name="label_preco">Price paid ($):</string>
     <string name="hint_preco">E.g.: 24.90</string>
@@ -42,41 +43,76 @@
     <string name="label_observacoes">Notes:</string>
     <string name="hint_observacoes">E.g.: promo valid until Sunday</string>
 
-    <string name="bt_salvar">Save</string>
-    <string name="bt_limpar">Clear</string>
-
     <string name="erro_produto">Enter the product name!</string>
     <string name="erro_marca">Enter the product brand!</string>
-    <string name="erro_mercado">Enter the market name!</string>
     <string name="erro_preco">Enter the price paid!</string>
     <string name="erro_preco_invalido">Invalid price! Use numbers only.</string>
     <string name="erro_quantidade">Enter the quantity bought!</string>
     <string name="erro_quantidade_invalida">Invalid quantity! Use numbers only.</string>
-    <string name="erro_observacoes">Enter a note about the purchase!</string>
     <string name="erro_categoria">Select the product category!</string>
     <string name="erro_unidade">Select the unit of measure!</string>
     <string name="erro_pagamento">Select the payment method!</string>
 
     <string name="msg_limpo">Form cleared!</string>
     <string name="campo_obrigatorio">Required field</string>
-    <string name="nenhuma_opcao">None</string>
 
-    <!-- Listing screen -->
+    <!-- Price list -->
     <string name="titulo_lista">Meu Preço</string>
     <string name="subtitulo_lista">Prices recorded at markets</string>
-    <string name="item_clicado">Selected: %1$s (%2$s) — $ %3$s</string>
-    <!-- Price shown in each list row; %1$s is the value already formatted. -->
+    <string name="item_clicado">Selected: %1$s (%2$s) — %3$s</string>
+    <!-- Price shown in the lists; %1$s is the number already formatted. -->
     <string name="formato_preco">$ %1$s</string>
-
-    <!-- Listing, form and about -->
-    <string name="bt_adicionar">Add</string>
-    <string name="bt_sobre">About</string>
+    <!-- Layout of the list rows (same in every language). -->
+    <string name="formato_item_linha" translatable="false">%1$s • %2$s</string>
+    <string name="formato_item_preco" translatable="false">%1$s\n%2$s</string>
     <string name="lista_vazia">No prices recorded yet.\nTap ADD to register a product.</string>
     <string name="produto_adicionado">%1$s added to the list!</string>
+    <string name="produto_editado">%1$s updated!</string>
+    <string name="produto_excluido">%1$s removed from the list!</string>
     <string name="titulo_cadastro_bar">New record</string>
+    <string name="titulo_cadastro_editar">Edit record</string>
 
+    <!-- Markets (second entity) -->
+    <string name="titulo_mercados">Markets</string>
+    <string name="subtitulo_mercados">Where you buy</string>
+    <string name="lista_mercados_vazia">No markets registered yet.\nTap ADD to register a market.</string>
+    <string name="titulo_cadastro_mercado">New market</string>
+    <string name="titulo_editar_mercado">Edit market</string>
+    <string name="cabecalho_mercado">Market Record</string>
+    <string name="subtitulo_mercado">Register the places where you shop.</string>
+    <string name="label_nome_mercado">Market name:</string>
+    <string name="hint_mercado">E.g.: Central Supermarket</string>
+    <string name="label_cidade">City:</string>
+    <string name="hint_cidade">E.g.: Curitiba</string>
+    <string name="cidade_nao_informada">City not informed</string>
+    <string name="erro_nome_mercado">Enter the market name!</string>
+    <string name="erro_mercado_duplicado">There is already a market named %1$s!</string>
+    <string name="mercado_adicionado">%1$s added!</string>
+    <string name="mercado_editado">%1$s updated!</string>
+    <string name="mercado_excluido">%1$s removed!</string>
+    <string name="item_mercado_clicado">%1$s — %2$s</string>
+    <string name="nenhum_preco">No prices</string>
+    <plurals name="total_precos">
+        <item quantity="one">%d price</item>
+        <item quantity="other">%d prices</item>
+    </plurals>
+
+    <!-- Dialogs (AlertDialog) -->
+    <string name="dialogo_excluir_titulo">Confirm deletion</string>
+    <string name="dialogo_excluir_produto">Delete the price of %1$s? This action cannot be undone.</string>
+    <string name="dialogo_excluir_mercado">Delete the market %1$s? This action cannot be undone.</string>
+    <string name="dialogo_mercado_em_uso_titulo">Market in use</string>
+    <string name="dialogo_mercado_em_uso">%1$s cannot be deleted because it has %2$s. Delete or change those prices first.</string>
+    <string name="dialogo_sem_mercado_titulo">No markets registered</string>
+    <string name="dialogo_sem_mercado">To record a price you first need to register the market where you bought the product.</string>
+    <string name="bt_excluir">Delete</string>
+    <string name="bt_cancelar">Cancel</string>
+    <string name="bt_ok">OK</string>
+    <string name="bt_cadastrar_mercado">Register market</string>
+
+    <!-- About -->
     <string name="titulo_autoria">About the app</string>
-    <string name="autoria_descricao">Meu Preço is an app for personal recording of product prices at markets. It lets you register products with brand, market, category, unit and price, and list the records made.</string>
+    <string name="autoria_descricao">Meu Preço is an app for personal recording of product prices at markets. You register the markets where you shop and, for each purchase, the product, brand, category, unit, price and purchase date. Everything is saved in a database on the device, so you can compare prices over time.</string>
     <string name="autoria_rotulo_aluno">Student</string>
     <string name="autoria_aluno">Gian Pedro Rodrigues</string>
     <string name="autoria_rotulo_curso">Course</string>
@@ -89,23 +125,23 @@
 
     <!-- Menus and contextual action -->
     <string name="menu_adicionar">Add</string>
+    <string name="menu_adicionar_mercado">Add market</string>
+    <string name="menu_mercados">Markets</string>
     <string name="menu_sobre">About</string>
     <string name="menu_editar">Edit</string>
     <string name="menu_excluir">Delete</string>
     <string name="menu_salvar">Save</string>
     <string name="menu_limpar">Clear</string>
-    <string name="titulo_cadastro_editar">Edit record</string>
-    <string name="produto_editado">%1$s updated!</string>
-    <string name="produto_excluido">%1$s removed from the list!</string>
 
-    <!-- Entrega 5 - settings and internationalization -->
+    <!-- Settings (SharedPreferences) -->
     <string name="menu_configuracoes">Settings</string>
     <string name="titulo_configuracoes">Settings</string>
-    <string name="config_ordenacao">Sort list by</string>
+    <string name="config_ordenacao">Sort price list by</string>
     <string name="ordenacao_nome">Name</string>
     <string name="ordenacao_preco">Price</string>
+    <string name="ordenacao_data">Purchase date (newest first)</string>
     <string name="config_sugerir_titulo">Suggest last market</string>
-    <string name="config_sugerir_desc">When adding a product, prefill the Market field with the last one used.</string>
+    <string name="config_sugerir_desc">When adding a price, preselect the last market used.</string>
     <string name="bt_restaurar">Restore defaults</string>
     <string name="msg_padroes_restaurados">Settings restored to defaults!</string>
 </resources>

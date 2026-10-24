@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Menu de opções da tela de Listagem (Entrega 4). -->
+<!--
+    Menu de opções da lista de preços. As quatro ações usam showAsAction
+    "always" para aparecerem como ícones na barra (com "ifRoom" o Android
+    manda parte delas para o menu de três pontinhos em telas estreitas).
+-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AlwaysShowAction">
 
     <item
         android:id="@+id/acao_adicionar"
         android:icon="@drawable/ic_add"
         android:title="@string/menu_adicionar"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/acao_mercados"
+        android:icon="@drawable/ic_store"
+        android:title="@string/menu_mercados"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/acao_configuracoes"
+        android:icon="@drawable/ic_settings"
         android:title="@string/menu_configuracoes"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/acao_sobre"
+        android:icon="@drawable/ic_info"
         android:title="@string/menu_sobre"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>

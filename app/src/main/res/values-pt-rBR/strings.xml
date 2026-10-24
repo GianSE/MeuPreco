@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Português do Brasil (Entrega 5 - internacionalização). -->
+<!-- Português do Brasil. Usado automaticamente quando o aparelho está em pt-BR. -->
 <resources>
     <string name="app_name">Meu Preço</string>
     <string name="titulo_activity_cadastro">Meu Preço - Novo Registro</string>
 
+    <!-- Formulário de preço -->
     <string name="cabecalho">Registro de Preço de Produto</string>
-    <string name="subtitulo">Anote quanto você pagou e onde comprou.</string>
+    <string name="subtitulo">Anote quanto você pagou, onde e quando comprou.</string>
 
     <string name="label_produto">Nome do produto:</string>
     <string name="hint_produto">Ex.: Arroz branco tipo 1 - 5 kg</string>
@@ -14,7 +15,7 @@
     <string name="hint_marca">Ex.: Tio João</string>
 
     <string name="label_mercado">Mercado:</string>
-    <string name="hint_mercado">Ex.: Supermercado Central</string>
+    <string name="label_data_compra">Data da compra:</string>
 
     <string name="label_preco">Preço pago (R$):</string>
     <string name="hint_preco">Ex.: 24,90</string>
@@ -42,41 +43,74 @@
     <string name="label_observacoes">Observações:</string>
     <string name="hint_observacoes">Ex.: promoção válida até domingo</string>
 
-    <string name="bt_salvar">Salvar</string>
-    <string name="bt_limpar">Limpar</string>
-
     <string name="erro_produto">Informe o nome do produto!</string>
     <string name="erro_marca">Informe a marca do produto!</string>
-    <string name="erro_mercado">Informe o nome do mercado!</string>
     <string name="erro_preco">Informe o preço pago!</string>
     <string name="erro_preco_invalido">Preço inválido! Use apenas números.</string>
     <string name="erro_quantidade">Informe a quantidade comprada!</string>
     <string name="erro_quantidade_invalida">Quantidade inválida! Use apenas números.</string>
-    <string name="erro_observacoes">Informe alguma observação sobre a compra!</string>
     <string name="erro_categoria">Selecione a categoria do produto!</string>
     <string name="erro_unidade">Selecione a unidade de medida!</string>
     <string name="erro_pagamento">Selecione a forma de pagamento!</string>
 
     <string name="msg_limpo">Formulário limpo!</string>
     <string name="campo_obrigatorio">Campo obrigatório</string>
-    <string name="nenhuma_opcao">Nenhuma</string>
 
-    <!-- Tela de listagem -->
+    <!-- Lista de preços -->
     <string name="titulo_lista">Meu Preço</string>
     <string name="subtitulo_lista">Preços registrados nos mercados</string>
-    <string name="item_clicado">Selecionado: %1$s (%2$s) — R$ %3$s</string>
-    <!-- Preço exibido em cada linha da lista; %1$s é o valor já formatado. -->
+    <string name="item_clicado">Selecionado: %1$s (%2$s) — %3$s</string>
+    <!-- Preço exibido nas listas; %1$s é o número já formatado. -->
     <string name="formato_preco">R$ %1$s</string>
-
-    <!-- Listagem, cadastro e autoria -->
-    <string name="bt_adicionar">Adicionar</string>
-    <string name="bt_sobre">Sobre</string>
     <string name="lista_vazia">Nenhum preço cadastrado ainda.\nToque em ADICIONAR para cadastrar um produto.</string>
     <string name="produto_adicionado">%1$s adicionado à lista!</string>
+    <string name="produto_editado">%1$s atualizado!</string>
+    <string name="produto_excluido">%1$s removido da lista!</string>
     <string name="titulo_cadastro_bar">Novo registro</string>
+    <string name="titulo_cadastro_editar">Editar registro</string>
 
+    <!-- Mercados (segunda entidade) -->
+    <string name="titulo_mercados">Mercados</string>
+    <string name="subtitulo_mercados">Onde você compra</string>
+    <string name="lista_mercados_vazia">Nenhum mercado cadastrado ainda.\nToque em ADICIONAR para cadastrar um mercado.</string>
+    <string name="titulo_cadastro_mercado">Novo mercado</string>
+    <string name="titulo_editar_mercado">Editar mercado</string>
+    <string name="cabecalho_mercado">Cadastro de Mercado</string>
+    <string name="subtitulo_mercado">Cadastre os lugares onde você faz compras.</string>
+    <string name="label_nome_mercado">Nome do mercado:</string>
+    <string name="hint_mercado">Ex.: Supermercado Central</string>
+    <string name="label_cidade">Cidade:</string>
+    <string name="hint_cidade">Ex.: Curitiba</string>
+    <string name="cidade_nao_informada">Cidade não informada</string>
+    <string name="erro_nome_mercado">Informe o nome do mercado!</string>
+    <string name="erro_mercado_duplicado">Já existe um mercado chamado %1$s!</string>
+    <string name="mercado_adicionado">%1$s adicionado!</string>
+    <string name="mercado_editado">%1$s atualizado!</string>
+    <string name="mercado_excluido">%1$s removido!</string>
+    <string name="item_mercado_clicado">%1$s — %2$s</string>
+    <string name="nenhum_preco">Nenhum preço</string>
+    <plurals name="total_precos">
+        <item quantity="one">%d preço</item>
+        <item quantity="many">%d preços</item>
+        <item quantity="other">%d preços</item>
+    </plurals>
+
+    <!-- Diálogos (AlertDialog) -->
+    <string name="dialogo_excluir_titulo">Confirmar exclusão</string>
+    <string name="dialogo_excluir_produto">Excluir o preço de %1$s? Esta ação não pode ser desfeita.</string>
+    <string name="dialogo_excluir_mercado">Excluir o mercado %1$s? Esta ação não pode ser desfeita.</string>
+    <string name="dialogo_mercado_em_uso_titulo">Mercado em uso</string>
+    <string name="dialogo_mercado_em_uso">%1$s não pode ser excluído porque possui %2$s. Exclua ou altere esses preços antes.</string>
+    <string name="dialogo_sem_mercado_titulo">Nenhum mercado cadastrado</string>
+    <string name="dialogo_sem_mercado">Para registrar um preço, primeiro cadastre o mercado onde você comprou o produto.</string>
+    <string name="bt_excluir">Excluir</string>
+    <string name="bt_cancelar">Cancelar</string>
+    <string name="bt_ok">OK</string>
+    <string name="bt_cadastrar_mercado">Cadastrar mercado</string>
+
+    <!-- Sobre -->
     <string name="titulo_autoria">Sobre o app</string>
-    <string name="autoria_descricao">O Meu Preço é um aplicativo para registro pessoal de preços de produtos em mercados. Ele permite cadastrar produtos com marca, mercado, categoria, unidade e preço, e listar os registros feitos.</string>
+    <string name="autoria_descricao">O Meu Preço é um aplicativo para registro pessoal de preços de produtos em mercados. Você cadastra os mercados onde faz compras e, a cada compra, o produto, a marca, a categoria, a unidade, o preço e a data da compra. Tudo fica salvo em um banco de dados no aparelho, para comparar os preços ao longo do tempo.</string>
     <string name="autoria_rotulo_aluno">Aluno</string>
     <string name="autoria_aluno">Gian Pedro Rodrigues</string>
     <string name="autoria_rotulo_curso">Curso</string>
@@ -89,23 +123,23 @@
 
     <!-- Menus e ação contextual -->
     <string name="menu_adicionar">Adicionar</string>
+    <string name="menu_adicionar_mercado">Adicionar mercado</string>
+    <string name="menu_mercados">Mercados</string>
     <string name="menu_sobre">Sobre</string>
     <string name="menu_editar">Editar</string>
     <string name="menu_excluir">Excluir</string>
     <string name="menu_salvar">Salvar</string>
     <string name="menu_limpar">Limpar</string>
-    <string name="titulo_cadastro_editar">Editar registro</string>
-    <string name="produto_editado">%1$s atualizado!</string>
-    <string name="produto_excluido">%1$s removido da lista!</string>
 
-    <!-- Entrega 5 - configurações e internacionalização -->
+    <!-- Configurações (SharedPreferences) -->
     <string name="menu_configuracoes">Configurações</string>
     <string name="titulo_configuracoes">Configurações</string>
-    <string name="config_ordenacao">Ordenar lista por</string>
+    <string name="config_ordenacao">Ordenar lista de preços por</string>
     <string name="ordenacao_nome">Nome</string>
     <string name="ordenacao_preco">Preço</string>
+    <string name="ordenacao_data">Data da compra (mais recentes)</string>
     <string name="config_sugerir_titulo">Sugerir último mercado</string>
-    <string name="config_sugerir_desc">Ao adicionar um produto, preencher o campo Mercado com o último usado.</string>
+    <string name="config_sugerir_desc">Ao adicionar um preço, já selecionar o último mercado usado.</string>
     <string name="bt_restaurar">Restaurar padrões</string>
     <string name="msg_padroes_restaurados">Configurações restauradas para o padrão!</string>
 </resources>

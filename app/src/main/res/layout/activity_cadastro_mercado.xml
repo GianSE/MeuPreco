@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Tela de cadastro/edição de um mercado (tabela mercados) - Entrega Final.
+    Toolbar no topo e o formulário dentro de um ScrollView.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/raiz"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verde_500"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/branco" />
+
+    <ScrollView
+        android:id="@+id/scrollFormulario"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cabecalho_mercado"
+                android:textColor="@color/verde_700"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/subtitulo_mercado"
+                android:textColor="@color/cinza_texto"
+                android:textSize="14sp" />
+
+            <!-- ===================== Nome ===================== -->
+            <TextView
+                style="@style/RotuloCampo"
+                android:text="@string/label_nome_mercado" />
+
+            <EditText
+                android:id="@+id/editNomeMercado"
+                style="@style/CampoTexto"
+                android:hint="@string/hint_mercado"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:maxLines="1" />
+
+            <!-- ===================== Cidade ===================== -->
+            <TextView
+                style="@style/RotuloCampo"
+                android:text="@string/label_cidade" />
+
+            <EditText
+                android:id="@+id/editCidade"
+                style="@style/CampoTexto"
+                android:hint="@string/hint_cidade"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:maxLines="1" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
